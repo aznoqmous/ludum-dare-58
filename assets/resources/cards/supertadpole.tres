@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://d32fsoxwcm7cb"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_tlr0j"]
+[ext_resource type="Texture2D" uid="uid://8hfy3cr3f4xa" path="res://assets/sprites/cards/Card_SuperPole.png" id="2_tlr0j"]
+
+[resource]
+script = ExtResource("1_tlr0j")
+name = "Super Tadpole"
+texture = ExtResource("2_tlr0j")
+power = 100
+card_color = 3
+card_rarity = 0
+description = "Kindness is the new punk rock!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://ipnlj2suvm16"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_nc08g"]
+[ext_resource type="Texture2D" uid="uid://ct2wro1jb7s5k" path="res://assets/sprites/cards/Carte_natpole.PNG" id="2_nc08g"]
+
+[resource]
+script = ExtResource("1_nc08g")
+name = "NatPole"
+texture = ExtResource("2_nc08g")
+power = 100
+card_color = 4
+card_rarity = 2
+description = "They prayin for the death of a rockstar!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

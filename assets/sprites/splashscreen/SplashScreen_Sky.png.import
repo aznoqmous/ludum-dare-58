@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://00onvyfpxofq"
-path="res://.godot/imported/Background.PNG-571c853fdb737c71a539b3dfad8b0d42.ctex"
+uid="uid://c1iyb5v6rr4oi"
+path="res://.godot/imported/SplashScreen_Sky.png-e7c42940cc7f91d699d9a3337b7d37d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/Background.PNG"
-dest_files=["res://.godot/imported/Background.PNG-571c853fdb737c71a539b3dfad8b0d42.ctex"]
+source_file="res://assets/sprites/splashscreen/SplashScreen_Sky.png"
+dest_files=["res://.godot/imported/SplashScreen_Sky.png-e7c42940cc7f91d699d9a3337b7d37d9.ctex"]
 
 [params]
 

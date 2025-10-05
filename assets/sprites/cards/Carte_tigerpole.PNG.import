@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bk0vaffemfeak"
-path="res://.godot/imported/card-throwing.png-adc0dbd62ce73576102efc4f8c32b2fb.ctex"
+uid="uid://ct170dl4hyj3m"
+path="res://.godot/imported/Carte_tigerpole.PNG-bfca524104012e268fcb7f821f368d83.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/card-throwing.png"
-dest_files=["res://.godot/imported/card-throwing.png-adc0dbd62ce73576102efc4f8c32b2fb.ctex"]
+source_file="res://assets/sprites/cards/Carte_tigerpole.PNG"
+dest_files=["res://.godot/imported/Carte_tigerpole.PNG-bfca524104012e268fcb7f821f368d83.ctex"]
 
 [params]
 

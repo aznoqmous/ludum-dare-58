@@ -20,7 +20,7 @@ var card_for_levels = [
 	8, 15
 ]
 
-func _ready() -> void:
+func _ready() -> void:	
 	card_for_levels.append(main.cards.size())
 	
 	open_collection.gui_input.connect(
@@ -30,7 +30,7 @@ func _ready() -> void:
 				open_collection.scale = Vector2(0.7, 1.5)
 				open_collection.texture = bag_opened_texture if cards_control.visible else bag_closed_texture
 	)
-	update_cards_collection()
+	main.ready.connect(func(): update_cards_collection())
 
 func _process(delta):
 	open_collection.scale = lerp(open_collection.scale, Vector2.ONE, delta * 10.0)
@@ -39,7 +39,7 @@ func _process(delta):
 func update_cards_collection():
 	for card in cards_container.get_children():
 		cards_container.remove_child(card)
-	build_player_collection_controls(cards_container)
+	build_collection(cards_container)
 	update_progress_bar()
 	
 func build_player_collection_controls(parent:Control):
@@ -50,6 +50,23 @@ func build_player_collection_controls(parent:Control):
 	for card in cards_dict.keys():
 		var card_control = main.create_card_control(card, parent)
 		card_control.set_count(cards_dict[card])
+
+func build_collection(parent: Control):
+	var cards_dict : Dictionary = {}
+
+	for card in cards:
+		if not cards_dict.has(card): cards_dict[card] = 0
+		cards_dict[card] += 1
+	
+	var main_cards = main.cards.duplicate()
+	main_cards.sort_custom(func(a, b): return b.card_rarity > a.card_rarity)
+	for card in main_cards:
+		var c = main.create_card_control(card, parent)
+		if not cards_dict.has(card):
+			c.set_unknown(true)
+			pass
+		else:
+			c.set_count(cards_dict[card])
 
 func add_card(card: CardResource):
 	cards.append(card)

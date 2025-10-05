@@ -5,9 +5,10 @@
 
 [resource]
 script = ExtResource("1_7l2rn")
-name = "Catdpole"
+name = "CatPole"
 texture = ExtResource("2_eyb1h")
 power = 100
 card_color = 2
 card_rarity = 1
-metadata/_custom_type_script = ExtResource("1_7l2rn")
+description = "meow meoowwww.."
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

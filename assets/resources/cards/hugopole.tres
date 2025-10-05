@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://cyc6h8p4ubvof"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_x648a"]
+[ext_resource type="Texture2D" uid="uid://cnh6mcrrol1aw" path="res://assets/sprites/cards/Carte_hugopole.PNG" id="2_l6aq7"]
+
+[resource]
+script = ExtResource("1_x648a")
+name = "Hugopole"
+texture = ExtResource("2_l6aq7")
+power = 100
+card_color = 5
+card_rarity = 2
+description = "Oh mon dieu!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

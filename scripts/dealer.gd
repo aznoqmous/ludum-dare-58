@@ -24,7 +24,5 @@ func _gui_input(event: InputEvent) -> void:
 			set_bubble(main.emoji_cross, 1.0)
 			
 func pick_cards():
-	var cs = main.cards.duplicate()
-	cs.shuffle()
-	cards = cs.slice(0, card_count)
+	cards = main.pick_cards(card_count)
 	set_bubble(main.emoji_exclamation)

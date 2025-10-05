@@ -9,25 +9,25 @@
 [ext_resource type="Texture2D" uid="uid://f1bd6y15rwv4" path="res://assets/sprites/Card_Star.png" id="5_71ok7"]
 [ext_resource type="Texture2D" uid="uid://chmhl8oddyka8" path="res://assets/sprites/Card_Unknown.png" id="8_vmg1y"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vmg1y"]
-line_spacing = -6.33
-font = ExtResource("4_0fh5j")
-font_size = 18
-outline_size = 3
-outline_color = Color(0, 0, 0, 0.313726)
-
-[sub_resource type="LabelSettings" id="LabelSettings_x3eci"]
-line_spacing = -6.33
-font = ExtResource("4_0fh5j")
-font_size = 22
-outline_size = 3
-outline_color = Color(0, 0, 0, 0.313726)
-
 [sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
 font = ExtResource("4_0fh5j")
 font_size = 32
 outline_size = 7
 outline_color = Color(1, 0.588235, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vmg1y"]
+line_spacing = -6.33
+font = ExtResource("4_0fh5j")
+font_size = 18
+outline_size = 6
+outline_color = Color(0, 0, 0, 0.294118)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x3eci"]
+line_spacing = -6.33
+font = ExtResource("4_0fh5j")
+font_size = 22
+outline_size = 6
+outline_color = Color(0, 0, 0, 0.294118)
 
 [sub_resource type="LabelSettings" id="LabelSettings_aa48w"]
 line_spacing = -6.33
@@ -63,7 +63,7 @@ layout_mode = 2
 mouse_filter = 1
 
 [node name="Background" type="TextureRect" parent="AspectRatioContainer/Control"]
-modulate = Color(0.871094, 0.871094, 0.871094, 1)
+modulate = Color(0.524139, 0.55697, 0.585938, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,7 +93,7 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="Colors" type="TextureRect" parent="AspectRatioContainer/Control"]
-modulate = Color(0.988235, 0.403922, 0.784314, 1)
+modulate = Color(0.854902, 0.458824, 0.909804, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,7 +118,7 @@ expand_mode = 2
 stretch_mode = 5
 
 [node name="Ribbon" type="TextureRect" parent="AspectRatioContainer/Control"]
-modulate = Color(0.988235, 0.403922, 0.784314, 1)
+modulate = Color(0.854902, 0.458824, 0.909804, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,10 +133,10 @@ stretch_mode = 5
 
 [node name="StarControl" type="Control" parent="AspectRatioContainer/Control"]
 anchors_preset = 0
-offset_left = 142.0
-offset_top = -2.0
-offset_right = 200.0
-offset_bottom = 56.0
+offset_left = 143.0
+offset_top = 3.0
+offset_right = 195.0
+offset_bottom = 55.0
 mouse_filter = 1
 
 [node name="StarShadow" type="TextureRect" parent="AspectRatioContainer/Control/StarControl"]
@@ -167,6 +167,25 @@ pivot_offset = Vector2(29, 29)
 texture = ExtResource("5_71ok7")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="PowerLabel" type="Label" parent="AspectRatioContainer/Control/StarControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -22.0028
+offset_right = 28.0
+offset_bottom = 17.9972
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "100"
+label_settings = SubResource("LabelSettings_4c57u")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NameLabel" type="Label" parent="AspectRatioContainer/Control"]
 layout_mode = 1
@@ -205,25 +224,6 @@ label_settings = SubResource("LabelSettings_x3eci")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-
-[node name="PowerLabel" type="Label" parent="AspectRatioContainer/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 41.0
-offset_top = -135.0
-offset_right = 99.0
-offset_bottom = -95.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 1
-text = "100"
-label_settings = SubResource("LabelSettings_4c57u")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="UnknownCardTexture" type="TextureRect" parent="AspectRatioContainer/Control"]
 visible = false

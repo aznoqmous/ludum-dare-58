@@ -10,5 +10,5 @@ texture = ExtResource("2_oxcuj")
 power = 100
 card_color = 3
 card_rarity = 2
-description = ""
-metadata/_custom_type_script = ExtResource("1_oxcuj")
+description = "Let's go to the Nil!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

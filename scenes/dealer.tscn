@@ -21,8 +21,5 @@ script = ExtResource("2_s2faf")
 material = SubResource("ShaderMaterial_s2faf")
 texture = ExtResource("4_s2faf")
 
-[node name="Bubble" parent="SpriteContainer" index="2"]
-pivot_offset = Vector2(53, 44)
-
 [node name="Label" parent="." index="1"]
 text = "Dealer"

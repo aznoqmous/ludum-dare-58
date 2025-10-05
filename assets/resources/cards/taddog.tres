@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://ds3rveh2hi6uj"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_asq0b"]
+[ext_resource type="Texture2D" uid="uid://cu7otmtayg8bx" path="res://assets/sprites/cards/Carte_dogpole.PNG" id="2_asq0b"]
+
+[resource]
+script = ExtResource("1_asq0b")
+name = "TadDog"
+texture = ExtResource("2_asq0b")
+power = 99
+card_color = 6
+card_rarity = 0
+description = "Woof Woof!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

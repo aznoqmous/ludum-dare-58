@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://ba7ikek3wfuhb"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_gxre1"]
+[ext_resource type="Texture2D" uid="uid://ct170dl4hyj3m" path="res://assets/sprites/cards/Carte_tigerpole.PNG" id="2_gxre1"]
+
+[resource]
+script = ExtResource("1_gxre1")
+name = "TigerPole"
+texture = ExtResource("2_gxre1")
+power = 5
+card_color = 6
+card_rarity = 0
+description = "Do a roar!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

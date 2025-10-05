@@ -1,14 +1,14 @@
 [gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://ctfir42uibamy"]
 
 [ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_r7fcj"]
-[ext_resource type="Texture2D" uid="uid://cxy2rbmlcqqxy" path="res://assets/sprites/cards/Card_ShydPole.png" id="2_odwd6"]
+[ext_resource type="Texture2D" uid="uid://qtkgggnei188" path="res://assets/sprites/cards/Carte_Radpole.PNG" id="2_r7fcj"]
 
 [resource]
 script = ExtResource("1_r7fcj")
-name = "Catdpole"
-texture = ExtResource("2_odwd6")
+name = "RadPole"
+texture = ExtResource("2_r7fcj")
 power = 5
 card_color = 4
-card_rarity = 2
-description = ""
-metadata/_custom_type_script = ExtResource("1_r7fcj")
+card_rarity = 1
+description = "Too cool for school!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

@@ -4,10 +4,11 @@ class_name CardControl extends Control
 @onready var picture: TextureRect = $AspectRatioContainer/Control/Picture
 @onready var picture_shadow: TextureRect = $AspectRatioContainer/Control/PictureShadow
 @onready var name_label: Label = $AspectRatioContainer/Control/NameLabel
-@onready var power_label: Label = $AspectRatioContainer/Control/PowerLabel
 @onready var colors: TextureRect = $AspectRatioContainer/Control/Colors
 @onready var ribbon: TextureRect = $AspectRatioContainer/Control/Ribbon
 @onready var card_count: Label = $AspectRatioContainer/Control/CardCount
+@onready var description: Label = $AspectRatioContainer/Control/Description
+@onready var power_label: Label = $AspectRatioContainer/Control/StarControl/PowerLabel
 
 @export var enabled_color : Color
 @export var disabled_color : Color
@@ -58,14 +59,14 @@ func load_card_resource(cr: CardResource):
 	colors.modulate = card_resource.color
 	ribbon.modulate = card_resource.color
 	background.modulate = card_resource.rarity_color
-		
+	description.text = card_resource.description
+
 signal click()
 signal hover()
 
 func set_unknown(value: bool):
 	unknown_card_texture.set_visible(value)
 	star_control.set_visible(not value)
-	
 
 func set_count(value):
 	card_count.set_visible(value > 1)

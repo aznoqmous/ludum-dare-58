@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://r5iig5n8b1he"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_86l5h"]
+[ext_resource type="Texture2D" uid="uid://dmn0udmlkf4ys" path="res://assets/sprites/cards/Card_frog.png" id="2_86l5h"]
+
+[resource]
+script = ExtResource("1_86l5h")
+name = "FrogPole"
+texture = ExtResource("2_86l5h")
+power = 80
+card_color = 1
+card_rarity = 0
+description = "Ribbit Ribbit"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

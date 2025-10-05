@@ -10,4 +10,5 @@ texture = ExtResource("2_6jnj3")
 power = 60
 card_color = 4
 card_rarity = 1
-metadata/_custom_type_script = ExtResource("1_h1fa6")
+description = "Pikroak Pikroak"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

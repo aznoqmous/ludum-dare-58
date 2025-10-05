@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://dw4v7awy3srrf"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_dti5g"]
+[ext_resource type="Texture2D" uid="uid://bu8brr30fowx8" path="res://assets/sprites/cards/Carte_starpole.PNG" id="2_dti5g"]
+
+[resource]
+script = ExtResource("1_dti5g")
+name = "Starpole"
+texture = ExtResource("2_dti5g")
+power = 95
+card_color = 5
+card_rarity = 1
+description = "Im gonna be a star!"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

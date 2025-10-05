@@ -1,16 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm22cjdmcms2x"]
+[gd_scene load_steps=10 format=3 uid="uid://dm22cjdmcms2x"]
 
 [ext_resource type="Script" uid="uid://oj13thfb6amd" path="res://scripts/card_node.gd" id="1_cfagd"]
-[ext_resource type="Texture2D" uid="uid://cg3uxdpg7j062" path="res://assets/sprites/Card_Sprite.png" id="1_f8qrr"]
-[ext_resource type="Texture2D" uid="uid://bqlv3juea8lvj" path="res://assets/sprites/character.png" id="2_cfagd"]
+[ext_resource type="Texture2D" uid="uid://b7nxhyhlbyidc" path="res://assets/sprites/Card_Background (5).png" id="2_t5h7p"]
+[ext_resource type="Texture2D" uid="uid://dg6f6fw5vydvc" path="res://assets/sprites/Star_Sprite.png" id="2_vvwvd"]
+[ext_resource type="Texture2D" uid="uid://ba0hkp63hcasf" path="res://assets/sprites/Card_Color (3).png" id="3_vvwvd"]
+[ext_resource type="Texture2D" uid="uid://c3dv8qaboqe0s" path="res://assets/sprites/Card_Ribbon.png" id="4_unbu0"]
+[ext_resource type="Texture2D" uid="uid://dmn0udmlkf4ys" path="res://assets/sprites/cards/Card_frog.png" id="5_wypkk"]
+
+[sub_resource type="Curve" id="Curve_unbu0"]
+_data = [Vector2(0, 1), 0.0, 0.236563, 0, 0, Vector2(0.508039, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1u8w0"]
+curve = SubResource("Curve_unbu0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vvwvd"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 200.0
+angular_velocity_min = -156.83
+angular_velocity_max = 160.4
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_1u8w0")
 
 [node name="PlayerCardNode" type="Node2D"]
 script = ExtResource("1_cfagd")
 
+[node name="ImpactParticles" type="GPUParticles2D" parent="."]
+scale = Vector2(4, 4)
+emitting = false
+amount = 16
+texture = ExtResource("2_vvwvd")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vvwvd")
+
 [node name="Background" type="Sprite2D" parent="."]
-texture = ExtResource("1_f8qrr")
+texture = ExtResource("2_t5h7p")
+
+[node name="Colors" type="Sprite2D" parent="."]
+texture = ExtResource("3_vvwvd")
+
+[node name="Ribbon" type="Sprite2D" parent="."]
+texture = ExtResource("4_unbu0")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(2, -28)
-scale = Vector2(0.48, 0.48)
-texture = ExtResource("2_cfagd")
+texture = ExtResource("5_wypkk")

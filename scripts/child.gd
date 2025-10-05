@@ -1,3 +1,4 @@
+@tool
 class_name Child extends Control
 
 @onready var main: Main = $"/root/Main"
@@ -8,12 +9,21 @@ class_name Child extends Control
 @onready var emoji: TextureRect = $SpriteContainer/Bubble/Emoji
 
 @export var cards : Array[CardResource]
-@export var child_resource: ChildResource
+@export var child_resource: ChildResource :
+	set(value):
+		child_resource = value
+		if sprite_2d: sprite_2d.texture = child_resource.texture
+		if label: label.text = child_resource.name
 
 var hovered : bool = false
 var outline_size := 0.0
 
 func _ready():
+	
+	if child_resource:
+		sprite_2d.texture = child_resource.texture
+		label.text = child_resource.name
+	
 	mouse_entered.connect(func():
 		hovered = true
 	)
@@ -48,15 +58,10 @@ func _gui_input(event: InputEvent) -> void:
 		
 func load_child_resource(cr: ChildResource):
 	child_resource = cr
-	sprite_2d.texture = cr.texture
-	label.text = cr.name
 	pick_cards()
 
 func pick_cards():
-	cards.clear()
-	var copy_cards = main.cards.duplicate()
-	copy_cards.shuffle()
-	cards = copy_cards.slice(0, 3)
+	cards = main.pick_cards(3)
 	set_bubble(main.emoji_exclamation)
 
 func set_bubble(emoji_texture:Texture, timeout:float=0.0):

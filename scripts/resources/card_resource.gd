@@ -26,8 +26,8 @@ var CARD_COLORS = [
 	"#3aa5db",
 	"#75d200",
 	"#ff85a4",
-	"#ff1515",
-	"#ffcb29",
+	"#ec5036",
+	"#ffd221",
 	"#da75e8",
 	"#ff964d"
 ]
@@ -38,7 +38,8 @@ enum CARD_RARITY {
 	EPIC
 }
 var CARD_RARITY_COLORS = [
-	"#dedede",
-	"#4c4c4c",
-	"#ffd221"
+	"#fdffc2",
+	"#a89a63",
+	#"#868e95",
+	"#343f44"
 ]

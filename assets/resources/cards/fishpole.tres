@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://d3yvooingktun"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_26njl"]
+[ext_resource type="Texture2D" uid="uid://be4qp77nxyxu1" path="res://assets/sprites/cards/Carte_fishpole.PNG" id="2_26njl"]
+
+[resource]
+script = ExtResource("1_26njl")
+name = "FishPole"
+texture = ExtResource("2_26njl")
+power = 60
+card_color = 0
+card_rarity = 0
+description = "Bloop Bloop"
+metadata/_custom_type_script = "uid://bijc2mf13ql1j"

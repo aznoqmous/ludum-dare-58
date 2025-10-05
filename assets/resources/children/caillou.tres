@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="ChildResource" load_steps=3 format=3 uid="uid://dhjya03v05l2s"]
 
 [ext_resource type="Script" uid="uid://bpxwn54sqcxia" path="res://scripts/resources/child_resource.gd" id="1_67f8o"]
-[ext_resource type="Texture2D" uid="uid://hvyeemxyqcub" path="res://assets/sprites/children/Perso_caillou.PNG" id="2_67f8o"]
+[ext_resource type="Texture2D" uid="uid://b4hd7uyk73ok3" path="res://assets/sprites/children/Perso_caillou.PNG" id="2_67f8o"]
 
 [resource]
 script = ExtResource("1_67f8o")
-name = "Caillou"
+name = "Marius"
 texture = ExtResource("2_67f8o")
 metadata/_custom_type_script = ExtResource("1_67f8o")
