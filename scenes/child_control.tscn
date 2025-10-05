@@ -32,8 +32,9 @@ shader_parameter/shade_color = Color(1, 1, 1, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_4f5vm"]
 font = ExtResource("6_kefvm")
-outline_size = 7
-outline_color = Color(0, 0, 0, 1)
+font_size = 26
+font_color = Color(0.136871, 0.129639, 0.1875, 1)
+outline_size = 9
 
 [sub_resource type="Animation" id="Animation_udqun"]
 length = 0.001
@@ -183,6 +184,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Bubble" type="TextureRect" parent="SpriteContainer"]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
@@ -194,6 +196,7 @@ offset_right = -15.0
 offset_bottom = -109.0
 grow_horizontal = 0
 pivot_offset = Vector2(53, 44)
+mouse_filter = 2
 texture = ExtResource("8_igrym")
 expand_mode = 1
 stretch_mode = 5
@@ -206,6 +209,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("9_igrym")
 expand_mode = 1
 stretch_mode = 5

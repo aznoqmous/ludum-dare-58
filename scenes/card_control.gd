@@ -9,6 +9,7 @@ class_name CardControl extends Control
 @onready var card_count: Label = $AspectRatioContainer/Control/CardCount
 @onready var description: Label = $AspectRatioContainer/Control/Description
 @onready var power_label: Label = $AspectRatioContainer/Control/StarControl/PowerLabel
+@onready var rarity_label: Label = $AspectRatioContainer/Control/RarityLabel
 
 @export var enabled_color : Color
 @export var disabled_color : Color
@@ -22,6 +23,7 @@ class_name CardControl extends Control
 var card_resource: CardResource
 
 var enabled := true
+var selected := true
 var hovered := false
 var shuffle_win_card := false
 
@@ -29,11 +31,16 @@ func _ready():
 	mouse_entered.connect(func():
 		hovered = true
 		hover.emit()
+		z_index = 1
 	)
-	mouse_exited.connect(func(): hovered = false)
+	mouse_exited.connect(func():
+		hovered = false
+		z_index = 0
+	)
 	
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
+		if not enabled: return
 		click.emit()
 
 func _process(delta):
@@ -41,7 +48,15 @@ func _process(delta):
 	if hovered: 
 		star.rotation += delta
 		star_shadow.rotation = star.rotation
-		
+
+func select():
+	selected = true
+	background.material.set("shader_parameter/outline_size", 5)
+	
+func unselect():
+	selected = false
+	background.material.set("shader_parameter/outline_size", 0)
+
 func enable():
 	enabled = true
 	modulate = enabled_color
@@ -60,6 +75,10 @@ func load_card_resource(cr: CardResource):
 	ribbon.modulate = card_resource.color
 	background.modulate = card_resource.rarity_color
 	description.text = card_resource.description
+	background.material.set("shader_parameter/shade_color", card_resource.rarity_color)
+	background.material.set("shader_parameter/outline_color", card_resource.color)
+	rarity_label.label_settings.outline_color = card_resource.color
+	rarity_label.text = ["COMMON", "RARE", "EPIC"][card_resource.card_rarity]
 
 signal click()
 signal hover()

@@ -11,7 +11,7 @@ uniform float alpha_threshold : hint_range(0.0, 1.0, 0.01) = 0.0;
 // Number of directions to sample from (max 8)
 uniform int outline_samples   : hint_range(4, 8) = 4;
 // Color to blend with solid pixels (alpha is blend strength)
-uniform vec4 shade_color      : source_color = vec4(1.0, 1.0, 1.0, 0.5); 
+uniform vec4 shade_color      : source_color = vec4(1.0, 1.0, 1.0, 0.5);
 
 // === Outline Sampling Directions ===
 
@@ -24,7 +24,7 @@ const vec2[8] DIRS = vec2[8]
 void fragment() {
 	vec4 tex = texture(TEXTURE, UV);
 	float alpha = tex.a;
-	
+
 	 // Skip fully transparent pixel with no outline
 	if (alpha <= 0.0 && outline_size <= 0.0) discard;
 
@@ -33,10 +33,12 @@ void fragment() {
 	vec4 out_color = tex;
 
 	// Blend solid pixels toward the shade_color based on its alpha
+
 	if (solid && shade_color.a > 0.0) {
 		out_color.rgb = mix(tex.rgb, shade_color.rgb, shade_color.a);
 		out_color.a   = alpha;
 	}
+	out_color.rgb = COLOR.xyz;
 
 	bool found = false;
 

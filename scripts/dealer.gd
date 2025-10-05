@@ -24,5 +24,6 @@ func _gui_input(event: InputEvent) -> void:
 			set_bubble(main.emoji_cross, 1.0)
 			
 func pick_cards():
-	cards = main.pick_cards(card_count)
+	#cards = main.pick_cards(card_count)
+	cards = [main.common_cards.pick_random(), main.rare_cards.pick_random(), main.epic_cards.pick_random()]
 	set_bubble(main.emoji_exclamation)

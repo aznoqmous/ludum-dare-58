@@ -14,6 +14,8 @@ class_name PlayerCollection extends CanvasLayer
 @export var bag_opened_texture: Texture
 @export var bag_closed_texture: Texture
 
+@onready var collection_stats_label: Label = $OpenCollection/CollectionStatsLabel
+
 const CARD_NODE = preload("res://scenes/card_node.tscn")
 
 var card_for_levels = [
@@ -22,7 +24,12 @@ var card_for_levels = [
 
 func _ready() -> void:	
 	card_for_levels.append(main.cards.size())
-	
+	open_collection.mouse_entered.connect(func():
+		open_collection.material.set("shader_parameter/outline_size", 5.0)
+	)
+	open_collection.mouse_exited.connect(func():
+		open_collection.material.set("shader_parameter/outline_size", 0.0)
+	)
 	open_collection.gui_input.connect(
 		func(event: InputEventMouseButton):
 			if event.is_pressed() and event.button_index == 1:
@@ -34,7 +41,7 @@ func _ready() -> void:
 
 func _process(delta):
 	open_collection.scale = lerp(open_collection.scale, Vector2.ONE, delta * 10.0)
-	level_progress_bar.value = lerp(level_progress_bar.value, current_progress_value, delta * 10.0)
+	level_progress_bar.value = lerp(level_progress_bar.value, current_progress_value, delta * 5.0)
 
 func update_cards_collection():
 	for card in cards_container.get_children():
@@ -95,7 +102,7 @@ func update_progress_bar():
 	level_progress_bar.max_value = goal
 	stats_label.text = str(value, "/", goal)
 	current_progress_value = value
-	print(current_progress_value, " ", goal)
+	collection_stats_label.text = str(value, "/", main.cards.size())
 
 func get_unique_cards_count():
 	var cards_dict : Dictionary = {}

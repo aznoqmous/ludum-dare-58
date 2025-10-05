@@ -20,16 +20,19 @@ func _ready():
 		main.rematch()
 	)
 	particles.global_position = get_viewport().size / 2.0
+	main.from_editor_to_viewport_transform(particles)
 
 func load_card(card: CardResource):
 	var child = center_container.get_child(0)
 	center_container.remove_child(child)
 	main.create_card_control(card, center_container)
+	particles.modulate = card.rarity_color
 
 func open():
 	set_visible(true)
 	rematch_button.set_visible(main.last_opponent.cards.size())
 	or_label.set_visible(main.last_opponent.cards.size())
+	rematch_button.text = "Rematch against " + main.last_opponent.child_resource.name
 
 func set_win():
 	title.text = "YOU GOT A NEW CARD !"

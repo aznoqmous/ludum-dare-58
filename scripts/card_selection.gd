@@ -16,6 +16,9 @@ class_name CardSelection extends CanvasLayer
 @onready var bubble: TextureRect = $Panel/Character/Bubble
 @onready var emoji: TextureRect = $Panel/Character/Bubble/Emoji
 
+@onready var dealer_label: Label = $Panel/CardSelectionControl/DealerLabel
+@onready var battle_label: Label = $Panel/CardSelectionControl/BattleLabel
+
 var pick_card_button: CustomButton
 
 var opponent : Child
@@ -32,12 +35,14 @@ var shop_player_score : float = 0.0
 var shop_dealer_score : float = 0.0
 
 func _ready():
+	
 	pre_mini_game_pick_card_button.pressed.connect(func():
 		if selected_opponent_card and selected_player_card:
 			var mini_game : MiniGame = main.mini_games.pick_random()
 			main.start_mini_game(mini_game, selected_player_card.card_resource, selected_opponent_card.card_resource, opponent)
 			set_visible(false)
 	)
+	
 	shop_pick_card_button.pressed.connect(func():
 		if shop_selected_dealer_cards.size() > 0.0 and shop_selected_player_cards.size() > 0.0:
 			for card in shop_selected_player_cards:
@@ -51,6 +56,8 @@ func _ready():
 				await main.wait(0.5)
 				
 			if not opponent_cards.size() : set_visible(false)
+			else: 
+				update_player_cards()
 	)
 	return_button.pressed.connect(func():
 		set_visible(false)
@@ -67,6 +74,8 @@ func open(child : Child, is_shop := false):
 	pick_card_button = shop_pick_card_button if _is_shop else pre_mini_game_pick_card_button
 	pre_minigame_button.set_visible(not _is_shop)
 	shop_button.set_visible(_is_shop)
+	battle_label.set_visible(not _is_shop)
+	dealer_label.set_visible(_is_shop)
 	
 	selected_player_card = null
 	selected_opponent_card = null
@@ -75,16 +84,24 @@ func open(child : Child, is_shop := false):
 	
 	opponent = child
 	
+	update_opponent_cards()
+	update_player_cards()
+	
+	set_visible(true)
+	
+	update_button()
+
+func update_opponent_cards():
 	for card in opponent_cards_container.get_children():
 		opponent_cards_container.remove_child(card)
-		
 	opponent_cards.clear()
-	for card_resource in child.cards:
+	for card_resource in opponent.cards:
 		var card = main.create_card_control(card_resource, opponent_cards_container)
 		bind_opponent_card(card)
 		opponent_cards.append(card)
-		card.disable()
-	
+		card.unselect()
+		
+func update_player_cards():
 	for card in player_cards_container.get_children():
 		player_cards_container.remove_child(card)
 		
@@ -93,39 +110,46 @@ func open(child : Child, is_shop := false):
 		var card = main.create_card_control(card_resource, player_cards_container)
 		bind_player_card(card)
 		player_cards.append(card)
-		card.disable()
-	
-	set_visible(true)
-	
-	update_button()
+		card.unselect()
 
 func bind_opponent_card(card: CardControl):
 	card.click.connect(func():
-		var state = not card.enabled
-		opponent_cards.map(func(card: CardControl): card.disable())
+		var state = not card.selected
+		opponent_cards.map(func(oc: CardControl): oc.unselect())
 		if state:
-			card.enable()
-			shop_selected_dealer_cards.append(card)
+			if not _is_shop:
+				player_cards.map(func(pc: CardControl):
+					if card.card_resource.card_rarity > pc.card_resource.card_rarity:
+						pc.disable()
+						pc.unselect()
+					else: pc.enable()
+				)
+				if selected_player_card and card.card_resource.card_rarity > selected_player_card.card_resource.card_rarity:
+					selected_player_card = null
+			card.select()
+			shop_selected_dealer_cards = [card]
 			selected_opponent_card = card
 		else:
-			shop_selected_dealer_cards.erase(card)
+			if not _is_shop:
+				player_cards.map(func(pc: CardControl): pc.enable())
+			shop_selected_dealer_cards.clear()
 			selected_opponent_card = null
-			card.disable()
+			card.unselect()
 		update_button()
 	)
 
 func bind_player_card(card: CardControl):
 	card.click.connect(func():
-		var state = not card.enabled
-		if not _is_shop: player_cards.map(func(card: CardControl): card.disable())
+		var state = not card.selected
+		if not _is_shop: player_cards.map(func(card: CardControl): card.unselect())
 		if state:
 			shop_selected_player_cards.append(card)
 			selected_player_card = card
-			card.enable()
+			card.select()
 		else: 
 			shop_selected_player_cards.erase(card)
 			selected_player_card = null
-			card.disable()
+			card.unselect()
 		update_button()
 	)
 
@@ -135,7 +159,7 @@ func update_button():
 	if _is_shop:
 		shop_player_score = 0.0
 		shop_dealer_score = 0.0
-		
+		print(shop_selected_dealer_cards, shop_selected_player_cards)
 		for card in shop_selected_dealer_cards:
 			shop_dealer_score += pow(3, card.card_resource.card_rarity)
 		for card in shop_selected_player_cards:
@@ -144,6 +168,7 @@ func update_button():
 		slider_value = sign(shop_player_score - shop_dealer_score)
 		
 		pick_card_button.text = "Chose cards to trade"
+		
 		
 		if shop_dealer_score == 0:
 			emoji.texture = main.emoji_ok_texture

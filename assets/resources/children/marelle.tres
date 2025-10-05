@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChildResource" load_steps=3 format=3 uid="uid://dxaajgjf2asao"]
+
+[ext_resource type="Script" uid="uid://bpxwn54sqcxia" path="res://scripts/resources/child_resource.gd" id="1_n1qg6"]
+[ext_resource type="Texture2D" uid="uid://bs58crv6r7g5u" path="res://assets/sprites/children/Perso_marelle.PNG" id="2_n1qg6"]
+
+[resource]
+script = ExtResource("1_n1qg6")
+name = "Tara"
+texture = ExtResource("2_n1qg6")
+metadata/_custom_type_script = "uid://bpxwn54sqcxia"

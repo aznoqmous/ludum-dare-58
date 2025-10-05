@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChildResource" load_steps=3 format=3 uid="uid://6p8yglmgwenl"]
+
+[ext_resource type="Script" uid="uid://bpxwn54sqcxia" path="res://scripts/resources/child_resource.gd" id="1_lyfsc"]
+[ext_resource type="Texture2D" uid="uid://b84lertbutjtm" path="res://assets/sprites/children/Perso_CordeASauter.PNG" id="2_lyfsc"]
+
+[resource]
+script = ExtResource("1_lyfsc")
+name = "Todd"
+texture = ExtResource("2_lyfsc")
+metadata/_custom_type_script = "uid://bpxwn54sqcxia"

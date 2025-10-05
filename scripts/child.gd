@@ -19,13 +19,11 @@ var hovered : bool = false
 var outline_size := 0.0
 
 func _ready():
-	
-	if child_resource:
-		sprite_2d.texture = child_resource.texture
-		label.text = child_resource.name
+	if child_resource: load_child_resource(child_resource)
 	
 	mouse_entered.connect(func():
 		hovered = true
+		hide_bubble()
 	)
 	mouse_exited.connect(func():
 		hovered = false
@@ -36,17 +34,16 @@ func _ready():
 		else: pick_cards()
 	)
 	
-	global_position = main.from_editor_to_viewport_position(global_position)
-	scale *= main.get_editor_to_viewport_ratio()
+	main.from_editor_to_viewport_transform(self)
 	
 	animation_player.play("idle")
 	animation_player.advance(randf_range(0, animation_player.current_animation.length()))
 
 func _process(delta):
 	if hovered:
-		outline_size = abs(sin(main.get_time() * TAU)) * 6.0
+		outline_size = lerp(outline_size, 4.0, delta * 20.0)
 	else:
-		outline_size = lerp(outline_size, 0.0, delta * 10.0)
+		outline_size = lerp(outline_size, 0.0, delta * 20.0)
 	sprite_2d.material.set("shader_parameter/outline_size", outline_size)
 	
 	bubble.scale = lerp(bubble.scale, Vector2.ONE, delta * 10.0)

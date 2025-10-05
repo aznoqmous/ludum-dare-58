@@ -6,7 +6,6 @@ class_name Main extends Node2D
 @onready var children_container: Control = $Playground/ChildrenContainer
 var children : Array[Child]
 
-
 @export var editor_size : Vector2
 
 @export_category("MiniGames")
@@ -95,6 +94,14 @@ func from_editor_to_viewport_position(pos):
 func get_editor_to_viewport_ratio():
 	return get_viewport().size.length() / editor_size.length()
 
+func from_editor_to_viewport_transform(node: Node):
+	node.scale *= get_editor_to_viewport_ratio()
+	node.position = from_editor_to_viewport_position(node.position)
+	get_viewport().size_changed.connect(func():
+		node.scale *= get_editor_to_viewport_ratio()
+		node.position = from_editor_to_viewport_position(node.position)
+	)
+
 signal difficulty_changed()
 signal mini_game_ended(mini_game: MiniGame)
 signal mini_game_started(mini_game: MiniGame)
@@ -105,6 +112,7 @@ var epic_drop_rates = [5, 10, 33]
 
 func pick_cards(count:int=1):
 	var cards : Array[CardResource] = []
+	if not common_cards.size(): return cards
 	for i in range(0, count):
 		var value = randf_range(0.0, 100.0)
 		if value < epic_drop_rates[_difficulty]: cards.append(epic_cards.pick_random())

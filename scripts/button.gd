@@ -2,6 +2,7 @@
 class_name CustomButton extends MarginContainer
 @onready var label: Label = $Label
 @onready var nine_patch_rect: NinePatchRect = $Label/Container/NinePatchRect
+@onready var main: Main
 
 var hovered := false
 @export var disabled : bool = false :
@@ -36,7 +37,8 @@ func _ready():
 	
 	mouse_entered.connect(func(): hovered = true)
 	mouse_exited.connect(func(): hovered = false)
-	
+	pivot_offset = size / 2.0
+
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		if disabled: return;
@@ -44,7 +46,7 @@ func _gui_input(event: InputEvent) -> void:
 
 func _process(delta):
 	scale = lerp(scale, Vector2.ONE * (1.1 if hovered else 1.0), delta * 10.0)
-	
+	pivot_offset = size / 2.0
 func update_colors():
 	if nine_patch_rect: nine_patch_rect.modulate = disabled_background_color if disabled else background_color
 	if label: label.modulate = disabled_text_color if disabled else text_color

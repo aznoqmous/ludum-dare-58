@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://ddchmnnpjs8jw"]
+[gd_scene load_steps=73 format=3 uid="uid://ddchmnnpjs8jw"]
 
 [ext_resource type="Script" uid="uid://bvlfxmlnvkquq" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://b70sq2lid103g" path="res://scenes/child_control.tscn" id="3_getpj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bu10fllsyd1sx" path="res://assets/sprites/ui/cross.png" id="6_jq2sk"]
 [ext_resource type="Texture2D" uid="uid://xmdh22d6q7cc" path="res://assets/sprites/backgrounds/Bg_ciel.PNG" id="7_come4"]
 [ext_resource type="Script" uid="uid://byygxukdm45nf" path="res://scripts/card_selection.gd" id="7_kek77"]
+[ext_resource type="Script" uid="uid://bll56lwb57eu2" path="res://playground.gd" id="7_uypp3"]
 [ext_resource type="Script" uid="uid://cksnhtib58jc5" path="res://scripts/player_collection.gd" id="8_efxa6"]
 [ext_resource type="Texture2D" uid="uid://bgnyvctqrbg5c" path="res://assets/sprites/backgrounds/Bg_degradéCiel.PNG" id="8_h8e4i"]
 [ext_resource type="Texture2D" uid="uid://fr8875a18y1q" path="res://assets/sprites/backgrounds/Nuages.PNG" id="9_4lmeg"]
@@ -27,8 +28,11 @@
 [ext_resource type="Texture2D" uid="uid://c2op0n5wqvo0k" path="res://assets/sprites/Backpack_open_pixel.png" id="15_d13ii"]
 [ext_resource type="Texture2D" uid="uid://dku5kk1v5nbou" path="res://assets/sprites/shadow.png" id="15_vivmo"]
 [ext_resource type="Texture2D" uid="uid://crth3dskudy22" path="res://assets/sprites/Backpack_closed_pixel.png" id="16_1u8w0"]
+[ext_resource type="Resource" uid="uid://dxaajgjf2asao" path="res://assets/resources/children/marelle.tres" id="17_f6a44"]
+[ext_resource type="Resource" uid="uid://bj14q2dxcpuwb" path="res://assets/resources/children/ballon.tres" id="18_hrvbo"]
 [ext_resource type="Texture2D" uid="uid://cxq1fwf11bokc" path="res://assets/sprites/backgrounds/Background_Hopscotch.png" id="19_1u8w0"]
 [ext_resource type="PackedScene" uid="uid://dm22cjdmcms2x" path="res://scenes/card_node.tscn" id="19_ryguw"]
+[ext_resource type="Resource" uid="uid://6p8yglmgwenl" path="res://assets/resources/children/corde.tres" id="19_uypp3"]
 [ext_resource type="Script" uid="uid://3gs2tyixvq0a" path="res://scripts/card_shuffle.gd" id="20_d13ii"]
 [ext_resource type="Texture2D" uid="uid://dg6f6fw5vydvc" path="res://assets/sprites/Star_Sprite.png" id="20_getpj"]
 [ext_resource type="Script" uid="uid://kes7qgj2en3v" path="res://scripts/mini_game_win_screen.gd" id="20_ryguw"]
@@ -39,14 +43,31 @@
 [ext_resource type="Texture2D" uid="uid://b7uhrl80sn7pg" path="res://assets/sprites/ui/UI_Arrow (1).png" id="33_ok6jj"]
 [ext_resource type="Texture2D" uid="uid://wnn4blixpu85" path="res://assets/sprites/ui/Cards_UI.png" id="36_come4"]
 [ext_resource type="Texture2D" uid="uid://dk3ibpbt4yqrm" path="res://assets/sprites/backgrounds/Background_sol.PNG" id="36_ok6jj"]
+[ext_resource type="Shader" uid="uid://cw7il7wmvf1u0" path="res://child_control.gdshader" id="37_blkrb"]
 [ext_resource type="Texture2D" uid="uid://c1iyb5v6rr4oi" path="res://assets/sprites/splashscreen/SplashScreen_Sky.png" id="40_wnkbs"]
 [ext_resource type="Texture2D" uid="uid://c2pcpnt7wud8n" path="res://assets/sprites/splashscreen/SplashScreen_Hills.png" id="41_f6a44"]
 [ext_resource type="Texture2D" uid="uid://cbcps8wouk7i8" path="res://assets/sprites/splashscreen/SplashScreen_Clouds.png" id="42_0cbny"]
 [ext_resource type="Texture2D" uid="uid://betjwetrmmnye" path="res://assets/sprites/splashscreen/SplashScreen_BigCloud.png" id="43_hrvbo"]
 [ext_resource type="Texture2D" uid="uid://le6foe8iyqx8" path="res://assets/sprites/splashscreen/SplashScreen_Peers.png" id="44_uypp3"]
+[ext_resource type="Script" uid="uid://cio68bj1i6kdh" path="res://scripts/title_screen.gd" id="45_abqjc"]
 [ext_resource type="Texture2D" uid="uid://cfpidua2vn4g5" path="res://assets/sprites/splashscreen/SplashScreen_Title.png" id="45_blkrb"]
 [ext_resource type="Texture2D" uid="uid://bx6fvtit8lbd2" path="res://assets/sprites/splashscreen/SplashScreen_Oiso_1.png" id="46_abqjc"]
 [ext_resource type="Texture2D" uid="uid://bxjdqop446vcc" path="res://assets/sprites/splashscreen/SplashScreen_Sun.png" id="47_6iyjs"]
+
+[sub_resource type="Animation" id="Animation_gngh3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_d2t1y"]
 resource_name = "idle"
@@ -65,26 +86,15 @@ tracks/0/keys = {
 "values": [Vector2(-1, 0), Vector2(-1119, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_gngh3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Clouds:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0n3wm"]
 _data = {
 &"RESET": SubResource("Animation_gngh3"),
 &"idle": SubResource("Animation_d2t1y")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_blkrb"]
+font = ExtResource("21_ryguw")
+font_size = 32
 
 [sub_resource type="Curve" id="Curve_d13ii"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -106,8 +116,9 @@ angular_velocity_max = 160.4
 gravity = Vector3(0, 98, 0)
 scale_curve = SubResource("CurveTexture_ok6jj")
 
-[sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
+[sub_resource type="LabelSettings" id="LabelSettings_uypp3"]
 font = ExtResource("21_ryguw")
+font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_lswn8"]
 font = ExtResource("21_ryguw")
@@ -125,6 +136,20 @@ font_size = 52
 outline_size = 10
 outline_color = Color(1, 1, 1, 0.309804)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abqjc"]
+shader = ExtResource("37_blkrb")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 0.0
+shader_parameter/alpha_threshold = 0.9
+shader_parameter/outline_samples = 4
+shader_parameter/shade_color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_abqjc"]
+font = ExtResource("21_ryguw")
+font_size = 32
+outline_size = 10
+outline_color = Color(0.0627451, 0.533333, 0.819608, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_facbu"]
 font = ExtResource("21_ryguw")
 font_size = 46
@@ -140,6 +165,57 @@ font = ExtResource("21_ryguw")
 font_size = 46
 font_color = Color(0.652344, 0.0382233, 0.0382233, 1)
 outline_color = Color(1, 1, 1, 0.27451)
+
+[sub_resource type="Animation" id="Animation_f6a44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BigCloud:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -648)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Hills:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 648)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Clouds:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -235)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/PlayButton:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_wnkbs"]
 resource_name = "fade_in"
@@ -183,7 +259,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Control/Button:visible")
+tracks/3/path = NodePath("Control/PlayButton:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -191,57 +267,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-
-[sub_resource type="Animation" id="Animation_f6a44"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/BigCloud:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -648)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/Hills:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 648)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Control/Clouds:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, -235)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Control/Button:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0cbny"]
@@ -255,12 +280,13 @@ script = ExtResource("1_ig7tw")
 editor_size = Vector2(1152, 648)
 mini_games = [NodePath("MiniGames/CardShuffle"), NodePath("MiniGames/CardThrowing")]
 emoji_sad_texture = ExtResource("11_kq58d")
-emoji_ok_texture = ExtResource("3_kq58d")
-emoji_happy_texture = ExtResource("4_seu75")
+emoji_ok_texture = ExtResource("4_seu75")
+emoji_happy_texture = ExtResource("3_kq58d")
 emoji_exclamation = ExtResource("5_htxhm")
 emoji_cross = ExtResource("6_jq2sk")
 
 [node name="Playground" type="Node2D" parent="."]
+script = ExtResource("7_uypp3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Playground"]
 layer = -1
@@ -303,8 +329,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -303.0
-offset_bottom = -303.0
+offset_top = -228.0
+offset_bottom = -228.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_4lmeg")
@@ -318,9 +344,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1150.0
-offset_top = -303.0
+offset_top = -228.0
 offset_right = 1150.0
-offset_bottom = -303.0
+offset_bottom = -228.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_4lmeg")
@@ -345,9 +371,9 @@ libraries = {
 autoplay = "idle"
 
 [node name="Dealer" parent="Playground" instance=ExtResource("4_0odxb")]
-offset_left = 1069.0
+offset_left = 114.0
 offset_top = 426.0
-offset_right = 1069.0
+offset_right = 114.0
 offset_bottom = 426.0
 
 [node name="ChildrenContainer" type="Control" parent="Playground"]
@@ -360,35 +386,59 @@ grow_vertical = 2
 
 [node name="Celestin" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
 layout_mode = 1
-offset_left = 526.0
-offset_top = 396.0
-offset_right = 526.0
-offset_bottom = 396.0
+offset_left = 634.0
+offset_top = 444.0
+offset_right = 634.0
+offset_bottom = 444.0
 child_resource = ExtResource("9_facbu")
 
 [node name="Marius" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
 layout_mode = 1
-offset_left = 885.0
-offset_top = 310.0
-offset_right = 885.0
-offset_bottom = 310.0
+offset_left = 864.0
+offset_top = 306.0
+offset_right = 864.0
+offset_bottom = 306.0
 child_resource = ExtResource("10_b1qrp")
 
 [node name="Lucas" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
 layout_mode = 1
-offset_left = 315.0
-offset_top = 432.0
-offset_right = 315.0
-offset_bottom = 432.0
+offset_left = 273.0
+offset_top = 347.0
+offset_right = 273.0
+offset_bottom = 347.0
 child_resource = ExtResource("11_h8e4i")
 
 [node name="Wendy" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
 layout_mode = 1
-offset_left = 426.0
-offset_top = 614.0
-offset_right = 426.0
-offset_bottom = 614.0
+offset_left = 394.0
+offset_top = 602.0
+offset_right = 394.0
+offset_bottom = 602.0
 child_resource = ExtResource("11_come4")
+
+[node name="Tara" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
+layout_mode = 1
+offset_left = 881.0
+offset_top = 498.0
+offset_right = 881.0
+offset_bottom = 498.0
+child_resource = ExtResource("17_f6a44")
+
+[node name="Juliette" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
+layout_mode = 1
+offset_left = 489.0
+offset_top = 405.0
+offset_right = 489.0
+offset_bottom = 405.0
+child_resource = ExtResource("18_hrvbo")
+
+[node name="Todd" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
+layout_mode = 1
+offset_left = 1041.0
+offset_top = 423.0
+offset_right = 1041.0
+offset_bottom = 423.0
+child_resource = ExtResource("19_uypp3")
 
 [node name="CardSelection" type="CanvasLayer" parent="."]
 visible = false
@@ -427,6 +477,18 @@ layout_mode = 2
 
 [node name="CardControl4" parent="CardSelection/Panel/CardSelectionControl/OpponentCards" instance=ExtResource("4_1bvp3")]
 layout_mode = 2
+
+[node name="DealerLabel" type="Label" parent="CardSelection/Panel/CardSelectionControl"]
+layout_mode = 2
+text = "- Honest dealers only accept fair trades - "
+label_settings = SubResource("LabelSettings_blkrb")
+horizontal_alignment = 1
+
+[node name="BattleLabel" type="Label" parent="CardSelection/Panel/CardSelectionControl"]
+layout_mode = 2
+text = "- Chose a card and bid one of your own - "
+label_settings = SubResource("LabelSettings_blkrb")
+horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CardSelection/Panel/CardSelectionControl"]
 clip_contents = false
@@ -540,6 +602,7 @@ anchor_right = 1.0
 offset_left = -190.0
 offset_right = -25.0
 grow_horizontal = 0
+pivot_offset = Vector2(82.5, 20)
 text = "PICK A CARD"
 
 [node name="PreMinigameButton" type="Control" parent="CardSelection/Panel"]
@@ -566,6 +629,7 @@ anchor_right = 1.0
 offset_left = -190.0
 offset_right = -25.0
 grow_horizontal = 0
+pivot_offset = Vector2(82.5, 20)
 text = "PICK A CARD"
 
 [node name="ReturnButton" parent="CardSelection/Panel" instance=ExtResource("10_cegan")]
@@ -581,7 +645,7 @@ offset_right = 286.0
 offset_bottom = 150.0
 grow_horizontal = 1
 grow_vertical = 1
-pivot_offset = Vector2(123.5, 20)
+pivot_offset = Vector2(130.5, 20)
 text = "Return to playground"
 
 [node name="MiniGameWinScreen" type="CanvasLayer" parent="."]
@@ -639,19 +703,19 @@ alignment = 1
 [node name="ReturnButton" parent="MiniGameWinScreen/Container/HBoxContainer" instance=ExtResource("10_cegan")]
 z_index = 1
 layout_mode = 2
-text = "RETURN TO PLAYGROUND"
-background_color = Color(0.572549, 0.869761, 1, 1)
+text = "Return to playground"
+background_color = Color(0.226563, 0.764343, 1, 1)
 
 [node name="OrLabel" type="Label" parent="MiniGameWinScreen/Container/HBoxContainer"]
 layout_mode = 2
 text = "OR"
-label_settings = SubResource("LabelSettings_d13ii")
+label_settings = SubResource("LabelSettings_uypp3")
 
 [node name="RematchButton" parent="MiniGameWinScreen/Container/HBoxContainer" instance=ExtResource("10_cegan")]
 z_index = 1
 layout_mode = 2
-text = "REMATCH AGAINST ANTHONY"
-background_color = Color(1, 0.572549, 0.572549, 1)
+text = "Rematch against Todd"
+background_color = Color(1, 0.227451, 0.227451, 1)
 
 [node name="Title" type="Label" parent="MiniGameWinScreen"]
 anchors_preset = 8
@@ -832,10 +896,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -112.0
-offset_top = -68.0
-offset_right = 8.0
-offset_bottom = 52.0
+offset_left = -152.0
+offset_top = -76.0
+offset_right = 10.0
+offset_bottom = 44.0
 grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("15_vivmo")
@@ -843,13 +907,14 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="OpenCollection" type="TextureRect" parent="PlayerCollection"]
+material = SubResource("ShaderMaterial_abqjc")
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -119.0
-offset_top = -110.0
+offset_left = -161.0
+offset_top = -149.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(59, 55)
@@ -877,6 +942,46 @@ offset_top = 67.0
 offset_bottom = 67.0
 grow_horizontal = 2
 scale = Vector2(0.2, 0.2)
+
+[node name="CollectionStatsLabel" type="Label" parent="PlayerCollection/OpenCollection"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -28.5
+offset_top = -38.0
+offset_right = 22.5
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+text = "2/8"
+label_settings = SubResource("LabelSettings_abqjc")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayerCollection/OpenCollection/CollectionStatsLabel"]
+visible = false
+modulate = Color(0.765625, 0.937365, 1, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -21.0
+offset_right = 37.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 0.472984
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("36_come4")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="MiniGames" type="Node" parent="."]
 
@@ -1033,6 +1138,40 @@ texture = ExtResource("36_ok6jj")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Title" type="Label" parent="MiniGames/CardShuffle/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -202.0
+offset_right = 150.0
+offset_bottom = -155.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CARD SHUFFLE"
+label_settings = SubResource("LabelSettings_b1qrp")
+horizontal_alignment = 1
+
+[node name="Help" type="Label" parent="MiniGames/CardShuffle/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 165.0
+offset_right = 150.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Find the right card !"
+label_settings = SubResource("LabelSettings_ok6jj")
+horizontal_alignment = 1
+
 [node name="CardsContainer" type="Control" parent="MiniGames/CardShuffle/Control"]
 layout_mode = 1
 anchors_preset = 15
@@ -1083,43 +1222,10 @@ offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="Label" parent="MiniGames/CardShuffle/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -202.0
-offset_right = 150.0
-offset_bottom = -155.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "CARD SHUFFLE"
-label_settings = SubResource("LabelSettings_b1qrp")
-horizontal_alignment = 1
+[node name="TitleScreen" type="CanvasLayer" parent="."]
+script = ExtResource("45_abqjc")
 
-[node name="Help" type="Label" parent="MiniGames/CardShuffle/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 165.0
-offset_right = 150.0
-offset_bottom = 192.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Find the right card !"
-label_settings = SubResource("LabelSettings_ok6jj")
-horizontal_alignment = 1
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="TitleScreen"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1127,7 +1233,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="TextureRect" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1137,7 +1243,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("40_wnkbs")
 
-[node name="Clouds" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="Clouds" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1149,7 +1255,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("42_0cbny")
 
-[node name="Hills" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="Hills" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1161,7 +1267,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_f6a44")
 
-[node name="Kids" type="TextureRect" parent="CanvasLayer/Control/Hills"]
+[node name="Kids" type="TextureRect" parent="TitleScreen/Control/Hills"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1171,7 +1277,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("44_uypp3")
 
-[node name="BigCloud" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="BigCloud" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1183,7 +1289,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("43_hrvbo")
 
-[node name="Title" type="TextureRect" parent="CanvasLayer/Control/BigCloud"]
+[node name="Title" type="TextureRect" parent="TitleScreen/Control/BigCloud"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1193,7 +1299,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("45_blkrb")
 
-[node name="Birds" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="Birds" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1203,7 +1309,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("46_abqjc")
 
-[node name="Sun" type="TextureRect" parent="CanvasLayer/Control"]
+[node name="Sun" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -1213,18 +1319,17 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("47_6iyjs")
 
-[node name="Button" parent="CanvasLayer/Control" instance=ExtResource("10_cegan")]
+[node name="PlayButton" parent="TitleScreen/Control" instance=ExtResource("10_cegan")]
 z_index = 1
 layout_mode = 1
 offset_left = -69.5
 offset_top = 85.0
 offset_right = 69.5
 offset_bottom = 125.0
-pivot_offset = Vector2(69.5, 20)
 text = "PLAY"
 background_color = Color(1, 0.371094, 0.371094, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleScreen"]
 libraries = {
 &"": SubResource("AnimationLibrary_0cbny")
 }

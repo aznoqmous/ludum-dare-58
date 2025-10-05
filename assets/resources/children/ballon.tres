@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChildResource" load_steps=3 format=3 uid="uid://bj14q2dxcpuwb"]
+
+[ext_resource type="Script" uid="uid://bpxwn54sqcxia" path="res://scripts/resources/child_resource.gd" id="1_873id"]
+[ext_resource type="Texture2D" uid="uid://cynsa0kovbpol" path="res://assets/sprites/children/Perso_ballon.PNG" id="2_873id"]
+
+[resource]
+script = ExtResource("1_873id")
+name = "Juliette"
+texture = ExtResource("2_873id")
+metadata/_custom_type_script = "uid://bpxwn54sqcxia"

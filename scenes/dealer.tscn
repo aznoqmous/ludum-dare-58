@@ -9,7 +9,7 @@
 resource_local_to_scene = true
 shader = ExtResource("2_3k2yn")
 shader_parameter/outline_color = Color(1, 1, 1, 1)
-shader_parameter/outline_size = 4.2
+shader_parameter/outline_size = 0.0
 shader_parameter/alpha_threshold = 0.9
 shader_parameter/outline_samples = 4
 shader_parameter/shade_color = Color(1, 1, 1, 0)
@@ -22,4 +22,4 @@ material = SubResource("ShaderMaterial_s2faf")
 texture = ExtResource("4_s2faf")
 
 [node name="Label" parent="." index="1"]
-text = "Dealer"
+text = "Min-Hee"
