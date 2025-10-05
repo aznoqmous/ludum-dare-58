@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm22cjdmcms2x"]
+
+[ext_resource type="Script" uid="uid://oj13thfb6amd" path="res://scripts/card_node.gd" id="1_cfagd"]
+[ext_resource type="Texture2D" uid="uid://cg3uxdpg7j062" path="res://assets/sprites/Card_Sprite.png" id="1_f8qrr"]
+[ext_resource type="Texture2D" uid="uid://bqlv3juea8lvj" path="res://assets/sprites/character.png" id="2_cfagd"]
+
+[node name="PlayerCardNode" type="Node2D"]
+script = ExtResource("1_cfagd")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_f8qrr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(2, -28)
+scale = Vector2(0.48, 0.48)
+texture = ExtResource("2_cfagd")

@@ -1,0 +1,187 @@
+[gd_scene load_steps=17 format=3 uid="uid://b70sq2lid103g"]
+
+[ext_resource type="Script" uid="uid://bq2vipukfa7n5" path="res://scripts/child.gd" id="1_3rl2d"]
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="2_kefvm"]
+[ext_resource type="Texture2D" uid="uid://bqlv3juea8lvj" path="res://assets/sprites/character.png" id="3_d2q3m"]
+[ext_resource type="Resource" uid="uid://22ndmg53t5pe" path="res://assets/resources/cards/tadpaul.tres" id="4_kin3o"]
+[ext_resource type="Texture2D" uid="uid://dku5kk1v5nbou" path="res://assets/sprites/shadow.png" id="5_4f5vm"]
+[ext_resource type="Texture2D" uid="uid://dv82apv1vw1l" path="res://assets/sprites/children/Perso_ds.PNG" id="5_kefvm"]
+[ext_resource type="Shader" uid="uid://cw7il7wmvf1u0" path="res://child_control.gdshader" id="6_d2q3m"]
+[ext_resource type="FontFile" uid="uid://sree8ycs3b7j" path="res://assets/fonts/Gaegu-Bold.ttf" id="6_kefvm"]
+[ext_resource type="Texture2D" uid="uid://dshnwtaya3ua2" path="res://assets/sprites/ui/bubble.png" id="8_igrym"]
+[ext_resource type="Texture2D" uid="uid://bpi67s15yjvvt" path="res://assets/sprites/ui/exclamation_mark.png" id="9_igrym"]
+
+[sub_resource type="Resource" id="Resource_udqun"]
+script = ExtResource("2_kefvm")
+name = "Tadpole"
+texture = ExtResource("3_d2q3m")
+power = 2
+card_color = 0
+card_rarity = 0
+description = ""
+metadata/_custom_type_script = ExtResource("2_kefvm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_udqun"]
+resource_local_to_scene = true
+shader = ExtResource("6_d2q3m")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 4.2
+shader_parameter/alpha_threshold = 0.9
+shader_parameter/outline_samples = 4
+shader_parameter/shade_color = Color(1, 1, 1, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4f5vm"]
+font = ExtResource("6_kefvm")
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_d2q3m"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.73333, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9)]
+}
+
+[sub_resource type="Animation" id="Animation_udqun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteContainer/Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.1, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_igrym"]
+_data = {
+&"RESET": SubResource("Animation_udqun"),
+&"idle": SubResource("Animation_d2q3m")
+}
+
+[node name="Child" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("1_3rl2d")
+cards = Array[ExtResource("2_kefvm")]([SubResource("Resource_udqun"), ExtResource("4_kin3o")])
+
+[node name="SpriteContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ShadowSprite" type="TextureRect" parent="SpriteContainer"]
+modulate = Color(1, 1, 1, 0.196078)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -45.0
+offset_right = 35.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_4f5vm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sprite2D" type="TextureRect" parent="SpriteContainer"]
+material = SubResource("ShaderMaterial_udqun")
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.0
+offset_top = -128.0
+offset_right = 37.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.1, 0.9)
+pivot_offset = Vector2(44, 121)
+mouse_default_cursor_shape = 2
+texture = ExtResource("5_kefvm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Bubble" type="TextureRect" parent="SpriteContainer"]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -121.0
+offset_top = -198.0
+offset_right = -15.0
+offset_bottom = -109.0
+grow_horizontal = 0
+texture = ExtResource("8_igrym")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Emoji" type="TextureRect" parent="SpriteContainer/Bubble"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_igrym")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -17.5
+offset_right = 53.0
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Anthony"
+label_settings = SubResource("LabelSettings_4f5vm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_igrym")
+}
+autoplay = "idle"

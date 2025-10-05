@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=3 uid="uid://ddchmnnpjs8jw"]
+
+[ext_resource type="Script" uid="uid://bvlfxmlnvkquq" path="res://scripts/main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://bq2vipukfa7n5" path="res://scripts/child.gd" id="2_h2yge"]
+[ext_resource type="Texture2D" uid="uid://bqlv3juea8lvj" path="res://assets/sprites/character.png" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/card_resource.gd" id="3_5vw27"]
+[ext_resource type="PackedScene" uid="uid://inu7j0nvmtss" path="res://scenes/card_control.tscn" id="4_1bvp3"]
+[ext_resource type="Resource" uid="uid://bop1njvrm8wpf" path="res://assets/resources/cards/tadpole.tres" id="4_kek77"]
+[ext_resource type="Resource" uid="uid://22ndmg53t5pe" path="res://assets/resources/cards/tadpaul.tres" id="5_4c57u"]
+[ext_resource type="Script" uid="uid://byygxukdm45nf" path="res://scripts/card_selection.gd" id="7_kek77"]
+[ext_resource type="Script" uid="uid://cksnhtib58jc5" path="res://scripts/player_collection.gd" id="8_efxa6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lquwl"]
+radius = 17.0
+height = 62.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_ig7tw")
+
+[node name="Playground" type="Node2D" parent="."]
+
+[node name="ChildrenContainer" type="Node2D" parent="Playground"]
+
+[node name="Child" type="Node2D" parent="Playground/ChildrenContainer"]
+position = Vector2(188, 180)
+script = ExtResource("2_h2yge")
+cards = Array[ExtResource("3_5vw27")]([ExtResource("4_kek77"), ExtResource("5_4c57u")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Playground/ChildrenContainer/Child"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="Playground/ChildrenContainer/Child"]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Playground/ChildrenContainer/Child/Area2D"]
+shape = SubResource("CapsuleShape2D_lquwl")
+
+[node name="Child2" type="Node2D" parent="Playground/ChildrenContainer"]
+position = Vector2(660, 251)
+script = ExtResource("2_h2yge")
+cards = Array[ExtResource("3_5vw27")]([ExtResource("4_kek77")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Playground/ChildrenContainer/Child2"]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_1bvp3")
+
+[node name="Area2D" type="Area2D" parent="Playground/ChildrenContainer/Child2"]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Playground/ChildrenContainer/Child2/Area2D"]
+shape = SubResource("CapsuleShape2D_lquwl")
+
+[node name="CardSelection" type="CanvasLayer" parent="Playground"]
+script = ExtResource("7_kek77")
+
+[node name="CardSelectionControl" type="VBoxContainer" parent="Playground/CardSelection"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 902.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="OpponentCards" type="HBoxContainer" parent="Playground/CardSelection/CardSelectionControl"]
+layout_mode = 2
+alignment = 1
+
+[node name="CardControl2" parent="Playground/CardSelection/CardSelectionControl/OpponentCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl3" parent="Playground/CardSelection/CardSelectionControl/OpponentCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl4" parent="Playground/CardSelection/CardSelectionControl/OpponentCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="Playground/CardSelection/CardSelectionControl"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="PickCardButton" type="Button" parent="Playground/CardSelection/CardSelectionControl/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.0
+offset_top = -15.0
+offset_right = 34.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PICK"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Playground/CardSelection/CardSelectionControl"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="PlayerCards" type="HBoxContainer" parent="Playground/CardSelection/CardSelectionControl/ScrollContainer"]
+layout_mode = 2
+
+[node name="CardControl2" parent="Playground/CardSelection/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl5" parent="Playground/CardSelection/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl6" parent="Playground/CardSelection/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl3" parent="Playground/CardSelection/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl7" parent="Playground/CardSelection/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl8" parent="Playground/CardSelection/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="PlayerCollection" type="CanvasLayer" parent="."]
+script = ExtResource("8_efxa6")
+cards = Array[ExtResource("3_5vw27")]([ExtResource("4_kek77"), ExtResource("5_4c57u")])
+
+[node name="Control" type="Control" parent="PlayerCollection"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

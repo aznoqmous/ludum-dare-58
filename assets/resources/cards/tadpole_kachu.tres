@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://dk1hv5rg11du1"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_h1fa6"]
+[ext_resource type="Texture2D" uid="uid://bqq5t7ktoorev" path="res://assets/sprites/cards/Tadpole-Kachu.png" id="2_6jnj3"]
+
+[resource]
+script = ExtResource("1_h1fa6")
+name = "Tadpole-Kachu"
+texture = ExtResource("2_6jnj3")
+power = 60
+card_color = 4
+card_rarity = 1
+metadata/_custom_type_script = ExtResource("1_h1fa6")

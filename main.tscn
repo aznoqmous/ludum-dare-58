@@ -1,0 +1,789 @@
+[gd_scene load_steps=45 format=3 uid="uid://ddchmnnpjs8jw"]
+
+[ext_resource type="Script" uid="uid://bvlfxmlnvkquq" path="res://scripts/main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://00onvyfpxofq" path="res://assets/sprites/Background.PNG" id="2_1u8w0"]
+[ext_resource type="Texture2D" uid="uid://bk0vaffemfeak" path="res://assets/sprites/card-throwing.png" id="2_d13ii"]
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="3_5vw27"]
+[ext_resource type="PackedScene" uid="uid://b70sq2lid103g" path="res://scenes/child_control.tscn" id="3_getpj"]
+[ext_resource type="Texture2D" uid="uid://dd146yt4i61qj" path="res://assets/sprites/ui/emoji-happy.png" id="3_kq58d"]
+[ext_resource type="PackedScene" uid="uid://c3uyoa18t0hv2" path="res://scenes/dealer.tscn" id="4_0odxb"]
+[ext_resource type="PackedScene" uid="uid://inu7j0nvmtss" path="res://scenes/card_control.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cg0ck1rfl668s" path="res://assets/sprites/ui/emoji-ok.png" id="4_seu75"]
+[ext_resource type="Resource" uid="uid://22ndmg53t5pe" path="res://assets/resources/cards/tadpaul.tres" id="5_4c57u"]
+[ext_resource type="Texture2D" uid="uid://bpi67s15yjvvt" path="res://assets/sprites/ui/exclamation_mark.png" id="5_htxhm"]
+[ext_resource type="Texture2D" uid="uid://5buu8hbn6diw" path="res://assets/sprites/children/Perso_dealer.PNG" id="6_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://bu10fllsyd1sx" path="res://assets/sprites/ui/cross.png" id="6_jq2sk"]
+[ext_resource type="Script" uid="uid://byygxukdm45nf" path="res://scripts/card_selection.gd" id="7_kek77"]
+[ext_resource type="Script" uid="uid://cksnhtib58jc5" path="res://scripts/player_collection.gd" id="8_efxa6"]
+[ext_resource type="PackedScene" uid="uid://v4uit2lo62iv" path="res://scenes/button.tscn" id="10_cegan"]
+[ext_resource type="Texture2D" uid="uid://dshnwtaya3ua2" path="res://assets/sprites/ui/bubble.png" id="10_qsp4k"]
+[ext_resource type="Texture2D" uid="uid://b73q8xejwbias" path="res://assets/sprites/ui/emoji-sad.png" id="11_kq58d"]
+[ext_resource type="Script" uid="uid://b8lhl1cmd4beo" path="res://scripts/card_throwing.gd" id="13_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://bqlv3juea8lvj" path="res://assets/sprites/character.png" id="14_lswn8"]
+[ext_resource type="Resource" uid="uid://bcr4u24ncsq3e" path="res://assets/resources/cards/catdpole.tres" id="14_ryguw"]
+[ext_resource type="Texture2D" uid="uid://ftvlgx4mvi40" path="res://assets/sprites/throwing-target.png" id="14_vivmo"]
+[ext_resource type="Texture2D" uid="uid://c2op0n5wqvo0k" path="res://assets/sprites/Backpack_open_pixel.png" id="15_d13ii"]
+[ext_resource type="Texture2D" uid="uid://dku5kk1v5nbou" path="res://assets/sprites/shadow.png" id="15_vivmo"]
+[ext_resource type="Texture2D" uid="uid://crth3dskudy22" path="res://assets/sprites/Backpack_closed_pixel.png" id="16_1u8w0"]
+[ext_resource type="Texture2D" uid="uid://d6o0egkfobds" path="res://assets/sprites/ui/arrow.png" id="17_yaehf"]
+[ext_resource type="Texture2D" uid="uid://cxq1fwf11bokc" path="res://assets/sprites/Background_Hopscotch.png" id="19_1u8w0"]
+[ext_resource type="PackedScene" uid="uid://dm22cjdmcms2x" path="res://scenes/card_node.tscn" id="19_ryguw"]
+[ext_resource type="Script" uid="uid://3gs2tyixvq0a" path="res://scripts/card_shuffle.gd" id="20_d13ii"]
+[ext_resource type="Texture2D" uid="uid://dg6f6fw5vydvc" path="res://assets/sprites/Star_Sprite.png" id="20_getpj"]
+[ext_resource type="Script" uid="uid://kes7qgj2en3v" path="res://scripts/mini_game_win_screen.gd" id="20_ryguw"]
+[ext_resource type="FontFile" uid="uid://sree8ycs3b7j" path="res://assets/fonts/Gaegu-Bold.ttf" id="21_ryguw"]
+[ext_resource type="Texture2D" uid="uid://dned8ecjgk8r0" path="res://assets/sprites/ui/ProgressBar_Background (1).png" id="25_ok6jj"]
+[ext_resource type="Texture2D" uid="uid://cr5uvg73hewsr" path="res://assets/sprites/ui/ProgressBar_Border.png" id="26_facbu"]
+[ext_resource type="Texture2D" uid="uid://cpvfnn1i58dqp" path="res://assets/sprites/ui/ProgressBar.png" id="27_b1qrp"]
+[ext_resource type="Texture2D" uid="uid://wnn4blixpu85" path="res://assets/sprites/ui/Cards_UI.png" id="36_come4"]
+
+[sub_resource type="Curve" id="Curve_d13ii"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1u8w0"]
+curve = SubResource("Curve_d13ii")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0odxb"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 200.0
+angular_velocity_min = -156.83
+angular_velocity_max = 160.4
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_1u8w0")
+
+[sub_resource type="LabelSettings" id="LabelSettings_d13ii"]
+font = ExtResource("21_ryguw")
+
+[sub_resource type="LabelSettings" id="LabelSettings_lswn8"]
+font = ExtResource("21_ryguw")
+font_size = 56
+
+[sub_resource type="Resource" id="Resource_a6jrf"]
+script = ExtResource("3_5vw27")
+name = "Tchadpole"
+texture = ExtResource("14_lswn8")
+power = 35
+card_color = 0
+card_rarity = 0
+description = ""
+metadata/_custom_type_script = ExtResource("3_5vw27")
+
+[sub_resource type="LabelSettings" id="LabelSettings_h8e4i"]
+font = ExtResource("21_ryguw")
+font_size = 32
+outline_size = 4
+outline_color = Color(0.407843, 0.741176, 0.862745, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4lmeg"]
+font = ExtResource("21_ryguw")
+font_size = 52
+outline_size = 10
+outline_color = Color(1, 1, 1, 0.309804)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("mini_games")]
+script = ExtResource("1_ig7tw")
+mini_games = [NodePath("MiniGames/CardThrowing")]
+editor_size = Vector2(1152, 648)
+emoji_sad_texture = ExtResource("11_kq58d")
+emoji_ok_texture = ExtResource("3_kq58d")
+emoji_happy_texture = ExtResource("4_seu75")
+emoji_exclamation = ExtResource("5_htxhm")
+emoji_cross = ExtResource("6_jq2sk")
+
+[node name="Playground" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Playground"]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="Playground/CanvasLayer"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1u8w0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChildrenContainer" type="Control" parent="Playground"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Child" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
+layout_mode = 1
+offset_left = 563.0
+offset_top = 345.0
+offset_right = 563.0
+offset_bottom = 345.0
+
+[node name="Child2" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
+layout_mode = 1
+offset_left = 885.0
+offset_top = 310.0
+offset_right = 885.0
+offset_bottom = 310.0
+
+[node name="Child3" parent="Playground/ChildrenContainer" instance=ExtResource("3_getpj")]
+layout_mode = 1
+offset_left = 315.0
+offset_top = 432.0
+offset_right = 315.0
+offset_bottom = 432.0
+
+[node name="Dealer" parent="Playground/ChildrenContainer" instance=ExtResource("4_0odxb")]
+layout_mode = 1
+offset_left = 1069.0
+offset_top = 426.0
+offset_right = 1069.0
+offset_bottom = 426.0
+
+[node name="CardSelection" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("7_kek77")
+
+[node name="Panel" type="Panel" parent="CardSelection"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardSelectionControl" type="VBoxContainer" parent="CardSelection/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 103.0
+offset_top = 68.0
+offset_right = -103.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="OpponentCards" type="HBoxContainer" parent="CardSelection/Panel/CardSelectionControl"]
+layout_mode = 2
+alignment = 1
+
+[node name="CardControl2" parent="CardSelection/Panel/CardSelectionControl/OpponentCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl3" parent="CardSelection/Panel/CardSelectionControl/OpponentCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl4" parent="CardSelection/Panel/CardSelectionControl/OpponentCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CardSelection/Panel/CardSelectionControl"]
+clip_contents = false
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="PlayerCards" type="HBoxContainer" parent="CardSelection/Panel/CardSelectionControl/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="CardControl2" parent="CardSelection/Panel/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl5" parent="CardSelection/Panel/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl6" parent="CardSelection/Panel/CardSelectionControl/ScrollContainer/PlayerCards" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="Character" type="Control" parent="CardSelection/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -274.0
+offset_top = -285.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="CharacterTexture" type="TextureRect" parent="CardSelection/Panel/Character"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -343.0
+offset_top = -61.0
+offset_right = -72.0
+offset_bottom = 349.0
+grow_horizontal = 0
+texture = ExtResource("6_a6jrf")
+
+[node name="Bubble" type="TextureRect" parent="CardSelection/Panel/Character"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -459.0
+offset_top = -162.0
+offset_right = -278.0
+offset_bottom = -10.0
+grow_horizontal = 0
+texture = ExtResource("10_qsp4k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Emoji" type="TextureRect" parent="CardSelection/Panel/Character/Bubble"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_kq58d")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShopButton" type="Control" parent="CardSelection/Panel"]
+z_index = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -432.0
+offset_top = -76.0
+offset_right = -172.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PickCardButton" parent="CardSelection/Panel/ShopButton" instance=ExtResource("10_cegan")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_right = -25.0
+grow_horizontal = 0
+text = "PICK A CARD"
+
+[node name="PreMinigameButton" type="Control" parent="CardSelection/Panel"]
+z_index = 1
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -432.0
+offset_top = -76.0
+offset_right = -172.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PickCardButton" parent="CardSelection/Panel/PreMinigameButton" instance=ExtResource("10_cegan")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -190.0
+offset_right = -25.0
+grow_horizontal = 0
+text = "PICK A CARD"
+
+[node name="ReturnButton" parent="CardSelection/Panel" instance=ExtResource("10_cegan")]
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 25.0
+offset_top = 110.0
+offset_right = 286.0
+offset_bottom = 150.0
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset = Vector2(123.5, 20)
+text = "Return to playground"
+
+[node name="MiniGameWinScreen" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("20_ryguw")
+
+[node name="Container" type="Panel" parent="MiniGameWinScreen"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Particles" type="GPUParticles2D" parent="MiniGameWinScreen/Container"]
+position = Vector2(575, 318)
+amount = 16
+texture = ExtResource("20_getpj")
+lifetime = 1.5
+preprocess = 2.0
+process_material = SubResource("ParticleProcessMaterial_0odxb")
+
+[node name="CenterContainer" type="CenterContainer" parent="MiniGameWinScreen/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -140.0
+offset_right = 100.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardControl" parent="MiniGameWinScreen/Container/CenterContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MiniGameWinScreen/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.5
+offset_top = 173.0
+offset_right = 198.5
+offset_bottom = 213.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="ReturnButton" parent="MiniGameWinScreen/Container/HBoxContainer" instance=ExtResource("10_cegan")]
+z_index = 1
+layout_mode = 2
+text = "RETURN TO PLAYGROUND"
+background_color = Color(0.572549, 0.869761, 1, 1)
+
+[node name="OrLabel" type="Label" parent="MiniGameWinScreen/Container/HBoxContainer"]
+layout_mode = 2
+text = "OR"
+label_settings = SubResource("LabelSettings_d13ii")
+
+[node name="RematchButton" parent="MiniGameWinScreen/Container/HBoxContainer" instance=ExtResource("10_cegan")]
+z_index = 1
+layout_mode = 2
+text = "REMATCH AGAINST ANTHONY"
+background_color = Color(1, 0.572549, 0.572549, 1)
+
+[node name="Title" type="Label" parent="MiniGameWinScreen"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -291.5
+offset_top = -209.0
+offset_right = 291.5
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU GOT A NEW CARD !"
+label_settings = SubResource("LabelSettings_lswn8")
+
+[node name="PlayerCollection" type="CanvasLayer" parent="."]
+script = ExtResource("8_efxa6")
+cards = Array[ExtResource("3_5vw27")]([SubResource("Resource_a6jrf"), ExtResource("5_4c57u"), ExtResource("14_ryguw"), ExtResource("14_ryguw"), ExtResource("14_ryguw")])
+bag_opened_texture = ExtResource("15_d13ii")
+bag_closed_texture = ExtResource("16_1u8w0")
+
+[node name="Level" type="Control" parent="PlayerCollection"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelProgressBar" type="TextureProgressBar" parent="PlayerCollection/Level"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+offset_left = 9.0
+offset_top = 30.0
+offset_right = 409.0
+offset_bottom = 94.0
+step = 0.0
+nine_patch_stretch = true
+stretch_margin_left = 30
+stretch_margin_top = 30
+stretch_margin_right = 30
+stretch_margin_bottom = 30
+texture_under = ExtResource("25_ok6jj")
+texture_over = ExtResource("26_facbu")
+texture_progress = ExtResource("27_b1qrp")
+tint_progress = Color(1, 0.703125, 0, 1)
+
+[node name="PowerLabel" type="Label" parent="PlayerCollection/Level/LevelProgressBar"]
+layout_mode = 1
+offset_left = 9.0
+offset_top = -29.0
+offset_right = 160.0
+offset_bottom = 11.0
+mouse_filter = 1
+text = "Street cred"
+label_settings = SubResource("LabelSettings_h8e4i")
+vertical_alignment = 1
+
+[node name="StatsLabel" type="Label" parent="PlayerCollection/Level/LevelProgressBar"]
+layout_mode = 1
+offset_left = 315.0
+offset_top = -29.0
+offset_right = 366.0
+offset_bottom = 11.0
+mouse_filter = 1
+text = "2/8"
+label_settings = SubResource("LabelSettings_h8e4i")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayerCollection/Level/LevelProgressBar/StatsLabel"]
+modulate = Color(0.910156, 0.943146, 1, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -21.0
+offset_right = 37.0
+offset_bottom = 19.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = 0.472984
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("36_come4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="PlayerCollection/Level/LevelProgressBar"]
+layout_mode = 1
+offset_left = 18.0
+offset_top = 8.0
+offset_right = 169.0
+offset_bottom = 61.0
+mouse_filter = 1
+text = "Noob"
+label_settings = SubResource("LabelSettings_4lmeg")
+vertical_alignment = 2
+
+[node name="CardsControl" type="Panel" parent="PlayerCollection"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerCollection/CardsControl"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = 45.0
+offset_right = 47.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardsContainer" type="GridContainer" parent="PlayerCollection/CardsControl/ScrollContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="CardControl2" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl5" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl6" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl7" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl8" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl9" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl10" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl11" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl12" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl13" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl14" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl15" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl16" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl17" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl18" parent="PlayerCollection/CardsControl/ScrollContainer/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="Shadow" type="TextureRect" parent="PlayerCollection"]
+modulate = Color(1, 1, 1, 0.196078)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -68.0
+offset_right = 8.0
+offset_bottom = 52.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("15_vivmo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="OpenCollection" type="TextureRect" parent="PlayerCollection"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -119.0
+offset_top = -110.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(59, 55)
+mouse_default_cursor_shape = 2
+texture = ExtResource("16_1u8w0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AddCardContainer" type="Control" parent="PlayerCollection/OpenCollection"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = -50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+
+[node name="AddCardTarget" type="Control" parent="PlayerCollection/OpenCollection"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_top = 67.0
+offset_bottom = 67.0
+grow_horizontal = 2
+scale = Vector2(0.2, 0.2)
+
+[node name="MiniGames" type="Node" parent="."]
+
+[node name="CardThrowing" type="CanvasLayer" parent="MiniGames"]
+visible = false
+script = ExtResource("13_2cqfq")
+
+[node name="Container" type="Control" parent="MiniGames/CardThrowing"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="MiniGames/CardThrowing/Container"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_1u8w0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Target" type="TextureRect" parent="MiniGames/CardThrowing/Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -454.0
+offset_top = -20.0
+offset_right = -250.0
+offset_bottom = 184.0
+grow_horizontal = 0
+grow_vertical = 2
+pivot_offset = Vector2(102, 102)
+texture = ExtResource("14_vivmo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control" type="Control" parent="MiniGames/CardThrowing/Container"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 95.0
+offset_top = 16.0
+offset_right = 287.0
+offset_bottom = 148.0
+grow_vertical = 2
+pivot_offset = Vector2(96, 66)
+
+[node name="Shadow" type="TextureRect" parent="MiniGames/CardThrowing/Container/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(102, 102)
+texture = ExtResource("15_vivmo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Arrow" type="TextureRect" parent="MiniGames/CardThrowing/Container/Control"]
+modulate = Color(0.717417, 0.979087, 0, 1)
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 126.0
+offset_top = -100.0
+offset_right = 326.0
+offset_bottom = 100.0
+grow_vertical = 2
+pivot_offset = Vector2(0, 100)
+texture = ExtResource("17_yaehf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PlayerCardNode" parent="MiniGames/CardThrowing/Container/Control" instance=ExtResource("19_ryguw")]
+position = Vector2(92, 66)
+scale = Vector2(0.3, 0.3)
+
+[node name="OpponentCardNode" parent="MiniGames/CardThrowing/Container/Control" instance=ExtResource("19_ryguw")]
+position = Vector2(92, 65)
+scale = Vector2(0.3, 0.3)
+
+[node name="CardShuffle" type="CanvasLayer" parent="MiniGames" node_paths=PackedStringArray("cards")]
+visible = false
+script = ExtResource("20_d13ii")
+cards = [NodePath("Control/CardsContainer/CardControl"), NodePath("Control/CardsContainer/CardControl2"), NodePath("Control/CardsContainer/CardControl3")]
+
+[node name="Control" type="Control" parent="MiniGames/CardShuffle"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="MiniGames/CardShuffle/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_d13ii")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardsContainer" type="Control" parent="MiniGames/CardShuffle/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardControl" parent="MiniGames/CardShuffle/Control/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -302.0
+offset_top = -140.0
+offset_right = -102.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardControl2" parent="MiniGames/CardShuffle/Control/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -140.0
+offset_right = 100.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardControl3" parent="MiniGames/CardShuffle/Control/CardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 102.0
+offset_top = -140.0
+offset_right = 302.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2

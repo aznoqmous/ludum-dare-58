@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://bcr4u24ncsq3e"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_7l2rn"]
+[ext_resource type="Texture2D" uid="uid://dit13bbhhawr3" path="res://assets/sprites/cards/Card_Catdpole_alt.png" id="2_eyb1h"]
+
+[resource]
+script = ExtResource("1_7l2rn")
+name = "Catdpole"
+texture = ExtResource("2_eyb1h")
+power = 100
+card_color = 2
+card_rarity = 1
+metadata/_custom_type_script = ExtResource("1_7l2rn")

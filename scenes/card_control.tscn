@@ -1,0 +1,260 @@
+[gd_scene load_steps=13 format=3 uid="uid://inu7j0nvmtss"]
+
+[ext_resource type="Script" uid="uid://clluc44pxodcv" path="res://scenes/card_control.gd" id="1_6bi2t"]
+[ext_resource type="Texture2D" uid="uid://b7nxhyhlbyidc" path="res://assets/sprites/Card_Background (5).png" id="2_vmg1y"]
+[ext_resource type="Texture2D" uid="uid://sxxmae7ayvll" path="res://assets/sprites/Card_Color.png" id="3_vmg1y"]
+[ext_resource type="FontFile" uid="uid://sree8ycs3b7j" path="res://assets/fonts/Gaegu-Bold.ttf" id="4_0fh5j"]
+[ext_resource type="Texture2D" uid="uid://c3dv8qaboqe0s" path="res://assets/sprites/Card_Ribbon.png" id="4_aa48w"]
+[ext_resource type="Texture2D" uid="uid://bqq5t7ktoorev" path="res://assets/sprites/cards/Tadpole-Kachu.png" id="4_vmg1y"]
+[ext_resource type="Texture2D" uid="uid://f1bd6y15rwv4" path="res://assets/sprites/Card_Star.png" id="5_71ok7"]
+[ext_resource type="Texture2D" uid="uid://chmhl8oddyka8" path="res://assets/sprites/Card_Unknown.png" id="8_vmg1y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vmg1y"]
+line_spacing = -6.33
+font = ExtResource("4_0fh5j")
+font_size = 18
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x3eci"]
+line_spacing = -6.33
+font = ExtResource("4_0fh5j")
+font_size = 22
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4c57u"]
+font = ExtResource("4_0fh5j")
+font_size = 32
+outline_size = 7
+outline_color = Color(1, 0.588235, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_aa48w"]
+line_spacing = -6.33
+font = ExtResource("4_0fh5j")
+font_size = 58
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CardControl" type="Control"]
+custom_minimum_size = Vector2(200, 280)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 280.0
+pivot_offset = Vector2(100, 140)
+mouse_default_cursor_shape = 2
+script = ExtResource("1_6bi2t")
+enabled_color = Color(1, 1, 1, 1)
+disabled_color = Color(0.305882, 0.305882, 0.305882, 1)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 140)
+ratio = 0.7143
+
+[node name="Control" type="Control" parent="AspectRatioContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Background" type="TextureRect" parent="AspectRatioContainer/Control"]
+modulate = Color(0.871094, 0.871094, 0.871094, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -39.9972
+offset_right = 39.9972
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vmg1y")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PictureShadow" type="TextureRect" parent="AspectRatioContainer/Control"]
+modulate = Color(0, 0, 0, 0.196078)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -38.0
+offset_top = 1.99721
+offset_right = 41.9944
+offset_bottom = 1.99719
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vmg1y")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Colors" type="TextureRect" parent="AspectRatioContainer/Control"]
+modulate = Color(0.988235, 0.403922, 0.784314, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_vmg1y")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Picture" type="TextureRect" parent="AspectRatioContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -39.9972
+offset_right = 39.9972
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vmg1y")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Ribbon" type="TextureRect" parent="AspectRatioContainer/Control"]
+modulate = Color(0.988235, 0.403922, 0.784314, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -39.9972
+offset_right = 39.9972
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_aa48w")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="StarControl" type="Control" parent="AspectRatioContainer/Control"]
+anchors_preset = 0
+offset_left = 142.0
+offset_top = -2.0
+offset_right = 200.0
+offset_bottom = 56.0
+mouse_filter = 1
+
+[node name="StarShadow" type="TextureRect" parent="AspectRatioContainer/Control/StarControl"]
+modulate = Color(0, 0, 0, 0.156863)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(29, 29)
+texture = ExtResource("5_71ok7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star" type="TextureRect" parent="AspectRatioContainer/Control/StarControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(29, 29)
+texture = ExtResource("5_71ok7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NameLabel" type="Label" parent="AspectRatioContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = 25.0
+offset_right = 55.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "Tadpole nerveux"
+label_settings = SubResource("LabelSettings_vmg1y")
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="AspectRatioContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = 65.0028
+offset_right = 64.0
+offset_bottom = 114.003
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "meow meoowwwww"
+label_settings = SubResource("LabelSettings_x3eci")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="PowerLabel" type="Label" parent="AspectRatioContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 41.0
+offset_top = -135.0
+offset_right = 99.0
+offset_bottom = -95.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+text = "100"
+label_settings = SubResource("LabelSettings_4c57u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnknownCardTexture" type="TextureRect" parent="AspectRatioContainer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 1.00562
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_vmg1y")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CardCount" type="Label" parent="AspectRatioContainer/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -122.0
+offset_top = -38.9972
+offset_bottom = 20.0028
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+text = "x2"
+label_settings = SubResource("LabelSettings_aa48w")
+horizontal_alignment = 2

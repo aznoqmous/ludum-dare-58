@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3uyoa18t0hv2"]
+
+[ext_resource type="PackedScene" uid="uid://b70sq2lid103g" path="res://scenes/child_control.tscn" id="1_vdw2x"]
+[ext_resource type="Shader" uid="uid://cw7il7wmvf1u0" path="res://child_control.gdshader" id="2_3k2yn"]
+[ext_resource type="Script" uid="uid://b851ri1qj1r1j" path="res://scripts/dealer.gd" id="2_s2faf"]
+[ext_resource type="Texture2D" uid="uid://5buu8hbn6diw" path="res://assets/sprites/children/Perso_dealer.PNG" id="4_s2faf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s2faf"]
+resource_local_to_scene = true
+shader = ExtResource("2_3k2yn")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_size = 4.2
+shader_parameter/alpha_threshold = 0.9
+shader_parameter/outline_samples = 4
+shader_parameter/shade_color = Color(1, 1, 1, 0)
+
+[node name="Dealer" instance=ExtResource("1_vdw2x")]
+script = ExtResource("2_s2faf")
+
+[node name="Sprite2D" parent="SpriteContainer" index="1"]
+material = SubResource("ShaderMaterial_s2faf")
+texture = ExtResource("4_s2faf")
+
+[node name="Bubble" parent="SpriteContainer" index="2"]
+pivot_offset = Vector2(53, 44)
+
+[node name="Label" parent="." index="1"]
+text = "Dealer"

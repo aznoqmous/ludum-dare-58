@@ -1,0 +1,88 @@
+class_name PlayerCollection extends CanvasLayer
+
+@onready var main : Main = $"/root/Main"
+
+@export var cards : Array[CardResource]
+
+@onready var open_collection: TextureRect = $OpenCollection
+@onready var cards_control: Control = $CardsControl
+@onready var cards_container: GridContainer = $CardsControl/ScrollContainer/CardsContainer
+
+@onready var add_card_container: Control = $OpenCollection/AddCardContainer
+@onready var add_card_target: Control = $OpenCollection/AddCardTarget
+
+@export var bag_opened_texture: Texture
+@export var bag_closed_texture: Texture
+
+const CARD_NODE = preload("res://scenes/card_node.tscn")
+
+var card_for_levels = [
+	8, 15
+]
+
+func _ready() -> void:
+	card_for_levels.append(main.cards.size())
+	
+	open_collection.gui_input.connect(
+		func(event: InputEventMouseButton):
+			if event.is_pressed() and event.button_index == 1:
+				cards_control.visible = not cards_control.visible
+				open_collection.scale = Vector2(0.7, 1.5)
+				open_collection.texture = bag_opened_texture if cards_control.visible else bag_closed_texture
+	)
+	update_cards_collection()
+
+func _process(delta):
+	open_collection.scale = lerp(open_collection.scale, Vector2.ONE, delta * 10.0)
+	level_progress_bar.value = lerp(level_progress_bar.value, current_progress_value, delta * 10.0)
+
+func update_cards_collection():
+	for card in cards_container.get_children():
+		cards_container.remove_child(card)
+	build_player_collection_controls(cards_container)
+	update_progress_bar()
+	
+func build_player_collection_controls(parent:Control):
+	var cards_dict : Dictionary = {}
+	for card in cards:
+		if not cards_dict.has(card): cards_dict[card] = 0
+		cards_dict[card] += 1
+	for card in cards_dict.keys():
+		var card_control = main.create_card_control(card, parent)
+		card_control.set_count(cards_dict[card])
+
+func add_card(card: CardResource):
+	cards.append(card)
+	update_cards_collection()
+	
+	var new_card = CARD_NODE.instantiate() as CardNode
+	add_card_container.add_child(new_card)
+	new_card.load_card_resource(card)
+	get_tree().create_tween().tween_property(new_card, "global_position", add_card_target.global_position, 0.5)
+	await get_tree().create_timer(0.5).timeout
+	open_collection.scale = Vector2.ONE * 1.5
+	add_card_container.remove_child(new_card)
+		
+func remove_card(card: CardResource):
+	cards.erase(card)
+	update_cards_collection()
+
+	
+@onready var level_progress_bar: TextureProgressBar = $Level/LevelProgressBar
+@onready var stats_label: Label = $Level/LevelProgressBar/StatsLabel
+var current_progress_value : float = 0.0
+func update_progress_bar():
+	var goal = card_for_levels[min(main._difficulty, card_for_levels.size() - 1)]
+	var value = get_unique_cards_count()
+	#level_progress_bar.value = value
+	level_progress_bar.max_value = goal
+	stats_label.text = str(value, "/", goal)
+	current_progress_value = value
+	print(current_progress_value, " ", goal)
+
+func get_unique_cards_count():
+	var cards_dict : Dictionary = {}
+	for card in cards:
+		if not cards_dict.has(card): cards_dict[card] = 0
+		cards_dict[card] += 1
+	return cards_dict.keys().size()

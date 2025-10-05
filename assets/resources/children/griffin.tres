@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChildResource" load_steps=3 format=3 uid="uid://r8a5y4qirdha"]
+
+[ext_resource type="Script" uid="uid://bpxwn54sqcxia" path="res://scripts/resources/child_resource.gd" id="1_41laa"]
+[ext_resource type="Texture2D" uid="uid://cx5deffqgry3h" path="res://assets/sprites/children/Perso_griffin.PNG" id="2_41laa"]
+
+[resource]
+script = ExtResource("1_41laa")
+name = "Anthony"
+texture = ExtResource("2_41laa")
+metadata/_custom_type_script = ExtResource("1_41laa")

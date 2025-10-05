@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ChildResource" load_steps=3 format=3 uid="uid://dtoquyc5147lo"]
+
+[ext_resource type="Script" uid="uid://bpxwn54sqcxia" path="res://scripts/resources/child_resource.gd" id="1_b16a7"]
+[ext_resource type="Texture2D" uid="uid://c5b7qpy0mlrid" path="res://assets/sprites/children/Perso_sable.PNG" id="2_b16a7"]
+
+[resource]
+script = ExtResource("1_b16a7")
+name = "Sable"
+texture = ExtResource("2_b16a7")
+metadata/_custom_type_script = ExtResource("1_b16a7")

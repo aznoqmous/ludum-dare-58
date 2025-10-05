@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardResource" load_steps=3 format=3 uid="uid://22ndmg53t5pe"]
+
+[ext_resource type="Script" uid="uid://bijc2mf13ql1j" path="res://scripts/resources/card_resource.gd" id="1_oxcuj"]
+[ext_resource type="Texture2D" uid="uid://csc07efjs2tu" path="res://assets/sprites/cards/Card_TadPaul.png" id="2_oxcuj"]
+
+[resource]
+script = ExtResource("1_oxcuj")
+name = "Tadpaul"
+texture = ExtResource("2_oxcuj")
+power = 100
+card_color = 3
+card_rarity = 2
+description = ""
+metadata/_custom_type_script = ExtResource("1_oxcuj")
