@@ -10,6 +10,7 @@ class_name CardControl extends Control
 @onready var description: Label = $AspectRatioContainer/Control/Description
 @onready var power_label: Label = $AspectRatioContainer/Control/StarControl/PowerLabel
 @onready var rarity_label: Label = $AspectRatioContainer/Control/RarityLabel
+@onready var impact_particles: GPUParticles2D = $ImpactParticles
 
 @export var enabled_color : Color
 @export var disabled_color : Color
@@ -83,10 +84,13 @@ func load_card_resource(cr: CardResource):
 signal click()
 signal hover()
 
-func set_unknown(value: bool):
+func set_unknown(value: bool = true):
 	unknown_card_texture.set_visible(value)
 	star_control.set_visible(not value)
 
 func set_count(value):
 	card_count.set_visible(value > 1)
 	card_count.text = str("x", value)
+
+func play_particles():
+	impact_particles.emitting = true

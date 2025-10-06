@@ -8,9 +8,7 @@ class_name CardBattle extends MiniGame
 
 var center_card : CardControl
 
-var is_center_player_card : bool : 
-	get: return player_cards.has(center_card)
-
+var player_cards_count = 3
 var mode: Mode = Mode.OpponentTurn
 
 enum Mode {
@@ -18,25 +16,42 @@ enum Mode {
 	OpponentTurn
 }
 
+func _ready():
+	for card in player_cards_container.get_children():
+		card as CardControl
+		card.click.connect(func():
+			play_card(card)
+		)
+
 func on_start():
+	center_card = null
+	
+	player_cards.clear()
+	for card_control in player_cards_container.get_children():
+		player_cards.append(card_control as CardControl)
+		card_control.set_visible(true)
+	
+	opponent_cards.clear()
+	for card_control in opponent_cards_container.get_children():
+		opponent_cards.append(card_control as CardControl)
+		card_control.set_visible(true)
+		card_control.set_unknown()
+
+	
 	opponent_cards.shuffle()
 	var random_cards = main.pick_cards(2)
 	opponent_cards[0].load_card_resource(random_cards[0])
 	opponent_cards[1].load_card_resource(random_cards[1])
 	opponent_cards[2].load_card_resource(opponent_card)
 	
-	for card in opponent_cards:
-		card.set_unknown(true)
-	
 	player_cards.shuffle()
-	player_cards[0].load_card_resource(main.player_collection.cards.pick_random())
-	player_cards[1].load_card_resource(main.player_collection.cards.pick_random())
+	random_cards = main.player_collection.cards.duplicate()
+	random_cards.erase(player_card)
+	random_cards.shuffle()
+	random_cards = random_cards.slice(0, player_cards_count - 1)
+	if random_cards.size() > 0: player_cards[0].load_card_resource(random_cards[0])
+	if random_cards.size() > 1: player_cards[1].load_card_resource(random_cards[1])
 	player_cards[2].load_card_resource(player_card)
-	
-	for card in player_cards:
-		card.click.connect(func():
-			play_card(card)
-		)
 	
 	await main.wait(0.5)
 	opponent_turn()
@@ -49,13 +64,16 @@ func player_turn():
 	mode = Mode.PlayerTurn
 	
 func play_card(card: Control):
-	card.z_index = 1.0
+	player_cards_container.z_index = 1.0 if mode == Mode.PlayerTurn else 0.0
+	opponent_cards_container.z_index = 1.0 if mode == Mode.OpponentTurn else 0.0
 	get_tree().create_tween().tween_property(
 		card, "global_position", 
 		center.global_position - card.size / 2.0 + Vector2.RIGHT.rotated(randf_range(0.0, TAU) * randf_range(20.0, 200.0)), 
-		0.5
+		0.3
 	)
 	card.set_unknown(false)
+	await main.wait(0.3)
+	card.play_particles()
 	await main.wait(0.5)
 	
 	if not center_card:
@@ -67,20 +85,23 @@ func play_card(card: Control):
 	if center_card.card_resource.power <= card.card_resource.power or center_card.card_resource.color == card.card_resource.color:
 		remove_card(center_card)
 		center_card = card
-		card.z_index = 0.0
+		if opponent_cards.size() <= 0:
+			return await win()
+		if player_cards.size() <= 0:
+			return await lose()
 		if mode == Mode.PlayerTurn: opponent_turn()
 		else: player_turn()
 	else:
 		remove_card(card)
+		if opponent_cards.size() <= 0:
+			return await win()
+		if player_cards.size() <= 0:
+			return await lose()
 		if mode == Mode.OpponentTurn: opponent_turn()
 		else: player_turn()
-		
-	if opponent_cards.size() <= 0: win()
-	if player_cards.size() <= 0: lose()
 
 func remove_card(card: CardControl):
 	opponent_cards.erase(card)
 	player_cards.erase(card)
-	card.get_parent().remove_child(card)
-	card.queue_free()
+	card.set_visible(false)
 	

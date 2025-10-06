@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://inu7j0nvmtss"]
+[gd_scene load_steps=20 format=3 uid="uid://inu7j0nvmtss"]
 
 [ext_resource type="Script" uid="uid://clluc44pxodcv" path="res://scenes/card_control.gd" id="1_6bi2t"]
+[ext_resource type="Texture2D" uid="uid://dg6f6fw5vydvc" path="res://assets/sprites/Star_Sprite.png" id="2_71ok7"]
 [ext_resource type="Shader" uid="uid://cw7il7wmvf1u0" path="res://child_control.gdshader" id="2_aa48w"]
 [ext_resource type="Texture2D" uid="uid://b7nxhyhlbyidc" path="res://assets/sprites/Card_Background (5).png" id="2_vmg1y"]
 [ext_resource type="Texture2D" uid="uid://sxxmae7ayvll" path="res://assets/sprites/Card_Color.png" id="3_vmg1y"]
@@ -9,6 +10,26 @@
 [ext_resource type="Texture2D" uid="uid://bqq5t7ktoorev" path="res://assets/sprites/cards/Tadpole-Kachu.png" id="4_vmg1y"]
 [ext_resource type="Texture2D" uid="uid://f1bd6y15rwv4" path="res://assets/sprites/Card_Star.png" id="5_71ok7"]
 [ext_resource type="Texture2D" uid="uid://chmhl8oddyka8" path="res://assets/sprites/Card_Unknown.png" id="8_vmg1y"]
+
+[sub_resource type="Curve" id="Curve_svilk"]
+_data = [Vector2(0, 1), 0.0, 0.236563, 0, 0, Vector2(0.508039, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1u8w0"]
+curve = SubResource("Curve_svilk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vneup"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_max = 200.0
+angular_velocity_min = -156.83
+angular_velocity_max = 160.4
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_1u8w0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_71ok7"]
 resource_local_to_scene = true
@@ -65,6 +86,18 @@ mouse_default_cursor_shape = 2
 script = ExtResource("1_6bi2t")
 enabled_color = Color(1, 1, 1, 1)
 disabled_color = Color(0.305882, 0.305882, 0.305882, 1)
+
+[node name="ImpactParticles" type="GPUParticles2D" parent="."]
+position = Vector2(95, 144)
+scale = Vector2(4, 4)
+emitting = false
+amount = 16
+texture = ExtResource("2_71ok7")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_vneup")
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
 layout_mode = 1
