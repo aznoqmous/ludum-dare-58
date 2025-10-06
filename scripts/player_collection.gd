@@ -15,15 +15,14 @@ class_name PlayerCollection extends CanvasLayer
 @export var bag_closed_texture: Texture
 
 @onready var collection_stats_label: Label = $OpenCollection/CollectionStatsLabel
+@onready var title_label: Label = $Level/LevelProgressBar/TitleLabel
 
 const CARD_NODE = preload("res://scenes/card_node.tscn")
 
-var card_for_levels = [
-	8, 15
-]
+var card_for_levels = [8, 15]
+var label_for_levels = ["Nobody", "Playa", "Wonder Kid", "Hero of the playground"]
 
 func _ready() -> void:	
-	card_for_levels.append(main.cards.size())
 	open_collection.mouse_entered.connect(func():
 		open_collection.material.set("shader_parameter/outline_size", 5.0)
 	)
@@ -37,7 +36,10 @@ func _ready() -> void:
 				open_collection.scale = Vector2(0.7, 1.5)
 				open_collection.texture = bag_opened_texture if cards_control.visible else bag_closed_texture
 	)
-	main.ready.connect(func(): update_cards_collection())
+	main.ready.connect(func(): 
+		card_for_levels.append(main.cards.size())
+		update_cards_collection()
+	)
 
 func _process(delta):
 	open_collection.scale = lerp(open_collection.scale, Vector2.ONE, delta * 10.0)
@@ -78,7 +80,6 @@ func build_collection(parent: Control):
 func add_card(card: CardResource):
 	cards.append(card)
 	update_cards_collection()
-	
 	var new_card = CARD_NODE.instantiate() as CardNode
 	add_card_container.add_child(new_card)
 	new_card.load_card_resource(card)
@@ -98,11 +99,16 @@ var current_progress_value : float = 0.0
 func update_progress_bar():
 	var goal = card_for_levels[min(main._difficulty, card_for_levels.size() - 1)]
 	var value = get_unique_cards_count()
-	#level_progress_bar.value = value
 	level_progress_bar.max_value = goal
 	stats_label.text = str(value, "/", goal)
 	current_progress_value = value
 	collection_stats_label.text = str(value, "/", main.cards.size())
+	title_label.text = label_for_levels[main._difficulty]
+	
+	if main._difficulty >= card_for_levels.size(): return;
+	if value >= goal:
+		main.up_difficulty()
+		update_progress_bar()
 
 func get_unique_cards_count():
 	var cards_dict : Dictionary = {}

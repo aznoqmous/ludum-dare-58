@@ -48,6 +48,11 @@ func _ready():
 	for child in children.slice(0, 3):
 		child.set_visible(true)
 
+func _input(event: InputEvent):
+	if event is InputEventKey and event.is_pressed():
+		if event.is_action_pressed("ui_down"):
+			player_collection.add_card(cards.pick_random())
+
 func load_cards():
 	for file_name in DirAccess.get_files_at("res://assets/resources/cards/"):
 		if (file_name.get_extension() == "tres"):
@@ -95,16 +100,16 @@ func get_editor_to_viewport_ratio():
 	return get_viewport().size.length() / editor_size.length()
 
 func from_editor_to_viewport_transform(node: Node):
+	var original_scale = node.scale
+	var original_position = node.position
 	node.scale *= get_editor_to_viewport_ratio()
 	node.position = from_editor_to_viewport_position(node.position)
 	get_viewport().size_changed.connect(func():
-		node.scale *= get_editor_to_viewport_ratio()
-		node.position = from_editor_to_viewport_position(node.position)
+		node.scale = original_scale * get_editor_to_viewport_ratio()
+		node.position = from_editor_to_viewport_position(original_position)
 	)
 
-signal difficulty_changed()
-signal mini_game_ended(mini_game: MiniGame)
-signal mini_game_started(mini_game: MiniGame)
+
 
 var common_drop_rates = [80, 45, 33]
 var rare_drop_rates = [15, 45, 33]
@@ -128,3 +133,11 @@ func pick_starter_cards():
 		cards.append(a)
 		commons = commons.filter(func(b): return b.card_color != a.card_color)
 	player_collection.cards = cards
+
+func up_difficulty():
+	_difficulty = min(max_difficulty, _difficulty + 1)
+	difficulty_changed.emit(_difficulty)
+
+signal difficulty_changed(diff: int)
+signal mini_game_ended(mini_game: MiniGame)
+signal mini_game_started(mini_game: MiniGame)
