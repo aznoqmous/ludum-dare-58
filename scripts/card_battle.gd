@@ -68,11 +68,12 @@ func play_card(card: Control):
 	opponent_cards_container.z_index = 1.0 if mode == Mode.OpponentTurn else 0.0
 	get_tree().create_tween().tween_property(
 		card, "global_position", 
-		center.global_position - card.size / 2.0 + Vector2.RIGHT.rotated(randf_range(0.0, TAU) * randf_range(20.0, 200.0)), 
+		center.global_position - card.size / 2.0 + Vector2.RIGHT.rotated(randf_range(0.0, TAU)) * randf_range(0, 100.0), 
 		0.3
 	)
 	card.set_unknown(false)
 	await main.wait(0.3)
+	card.scale = Vector2.ONE * 1.2
 	card.play_particles()
 	await main.wait(0.5)
 	
