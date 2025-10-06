@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://ddchmnnpjs8jw"]
+[gd_scene load_steps=74 format=3 uid="uid://ddchmnnpjs8jw"]
 
 [ext_resource type="Script" uid="uid://bvlfxmlnvkquq" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://b70sq2lid103g" path="res://scenes/child_control.tscn" id="3_getpj"]
@@ -49,6 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://cbcps8wouk7i8" path="res://assets/sprites/splashscreen/SplashScreen_Clouds.png" id="42_0cbny"]
 [ext_resource type="Texture2D" uid="uid://betjwetrmmnye" path="res://assets/sprites/splashscreen/SplashScreen_BigCloud.png" id="43_hrvbo"]
 [ext_resource type="Texture2D" uid="uid://le6foe8iyqx8" path="res://assets/sprites/splashscreen/SplashScreen_Peers.png" id="44_uypp3"]
+[ext_resource type="Script" uid="uid://birmyi5ml4l4k" path="res://scripts/card_battle.gd" id="45_6iyjs"]
 [ext_resource type="Script" uid="uid://cio68bj1i6kdh" path="res://scripts/title_screen.gd" id="45_abqjc"]
 [ext_resource type="Texture2D" uid="uid://cfpidua2vn4g5" path="res://assets/sprites/splashscreen/SplashScreen_Title.png" id="45_blkrb"]
 [ext_resource type="Texture2D" uid="uid://bx6fvtit8lbd2" path="res://assets/sprites/splashscreen/SplashScreen_Oiso_1.png" id="46_abqjc"]
@@ -278,7 +279,7 @@ _data = {
 [node name="Main" type="Node2D" node_paths=PackedStringArray("mini_games")]
 script = ExtResource("1_ig7tw")
 editor_size = Vector2(1152, 648)
-mini_games = [NodePath("MiniGames/CardShuffle"), NodePath("MiniGames/CardThrowing")]
+mini_games = [NodePath("MiniGames/CardBattle")]
 emoji_sad_texture = ExtResource("11_kq58d")
 emoji_ok_texture = ExtResource("4_seu75")
 emoji_happy_texture = ExtResource("3_kq58d")
@@ -319,7 +320,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-offset_right = -1.0
+offset_right = 1151.0
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1223,6 +1225,148 @@ offset_bottom = 140.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CardBattle" type="CanvasLayer" parent="MiniGames" node_paths=PackedStringArray("opponent_cards", "player_cards")]
+visible = false
+script = ExtResource("45_6iyjs")
+opponent_cards = [NodePath("Container/OpponentCards/OpponentCardsContainer/CardControl"), NodePath("Container/OpponentCards/OpponentCardsContainer/CardControl2"), NodePath("Container/OpponentCards/OpponentCardsContainer/CardControl3")]
+player_cards = [NodePath("Container/PlayerCards/PlayerCardsContainer/CardControl"), NodePath("Container/PlayerCards/PlayerCardsContainer/CardControl2"), NodePath("Container/PlayerCards/PlayerCardsContainer/CardControl3")]
+
+[node name="Container" type="Control" parent="MiniGames/CardBattle"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="MiniGames/CardBattle/Container"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("36_ok6jj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="MiniGames/CardBattle/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -86.0
+offset_right = 150.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CARD BATTLE!"
+label_settings = SubResource("LabelSettings_facbu")
+horizontal_alignment = 1
+
+[node name="Help" type="Label" parent="MiniGames/CardBattle/Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.5
+offset_top = 232.0
+offset_right = 199.5
+offset_bottom = 259.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play a more powerful card or card with 
+same color to beat your opponent"
+label_settings = SubResource("LabelSettings_ok6jj")
+horizontal_alignment = 1
+
+[node name="PlayerCards" type="Control" parent="MiniGames/CardBattle/Container"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -243.0
+offset_top = -181.0
+offset_right = 243.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="PlayerCardsContainer" type="HBoxContainer" parent="MiniGames/CardBattle/Container/PlayerCards"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -49.0
+offset_right = 229.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+alignment = 1
+
+[node name="CardControl" parent="MiniGames/CardBattle/Container/PlayerCards/PlayerCardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl2" parent="MiniGames/CardBattle/Container/PlayerCards/PlayerCardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl3" parent="MiniGames/CardBattle/Container/PlayerCards/PlayerCardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="OpponentCards" type="Control" parent="MiniGames/CardBattle/Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 30.0
+offset_right = 243.0
+offset_bottom = 211.0
+grow_horizontal = 2
+
+[node name="OpponentCardsContainer" type="HBoxContainer" parent="MiniGames/CardBattle/Container/OpponentCards"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -49.0
+offset_right = 229.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8, 0.8)
+alignment = 1
+
+[node name="CardControl" parent="MiniGames/CardBattle/Container/OpponentCards/OpponentCardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl2" parent="MiniGames/CardBattle/Container/OpponentCards/OpponentCardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="CardControl3" parent="MiniGames/CardBattle/Container/OpponentCards/OpponentCardsContainer" instance=ExtResource("4_1bvp3")]
+layout_mode = 2
+
+[node name="Center" type="Control" parent="MiniGames/CardBattle/Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="TitleScreen" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("45_abqjc")
@@ -1252,7 +1396,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -235.0
-offset_bottom = -235.0
+offset_right = 1152.0
+offset_bottom = 413.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("42_0cbny")
@@ -1264,7 +1409,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 648.0
-offset_bottom = 648.0
+offset_right = 1152.0
+offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_f6a44")
@@ -1286,7 +1432,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -648.0
-offset_bottom = -648.0
+offset_right = 1152.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("43_hrvbo")
