@@ -1,6 +1,7 @@
 class_name MiniGame extends CanvasLayer
 
 @onready var main: Main = $"/root/Main"
+@export var background_texture:Texture
 
 var player_card : CardResource
 var opponent_card : CardResource

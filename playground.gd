@@ -4,4 +4,3 @@ extends Node2D
 
 func _ready() -> void:
 	main.from_editor_to_viewport_transform(clouds)
-	

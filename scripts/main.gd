@@ -1,5 +1,7 @@
 class_name Main extends Node2D
 
+@onready var mini_game_transition: MiniGameTransition = $MiniGames/MiniGameTransition
+
 @onready var player_collection: PlayerCollection = $PlayerCollection
 @onready var card_selection: CardSelection = $CardSelection
 @onready var mini_game_win_screen: MiniGameWinScreen = $MiniGameWinScreen
@@ -81,6 +83,12 @@ func wait(time):
 func start_mini_game(mini_game: MiniGame, player_card: CardResource, opponent_card: CardResource, opponent: Child):
 	last_mini_game = mini_game
 	last_opponent = opponent
+	mini_game_transition.set_visible(true)
+	mini_game_transition.background.texture = mini_game.background_texture
+	mini_game_transition.opponent_texture.texture = opponent.child_resource.texture
+	mini_game_transition.animation_player.play("enter_minigame")
+	await wait(3.0)
+	mini_game_transition.set_visible(false)
 	mini_game.start(player_card, opponent_card, opponent)
 
 func rematch():

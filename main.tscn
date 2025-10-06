@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://ddchmnnpjs8jw"]
+[gd_scene load_steps=86 format=3 uid="uid://ddchmnnpjs8jw"]
 
 [ext_resource type="Script" uid="uid://bvlfxmlnvkquq" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://b70sq2lid103g" path="res://scenes/child_control.tscn" id="3_getpj"]
@@ -53,7 +53,14 @@
 [ext_resource type="Script" uid="uid://cio68bj1i6kdh" path="res://scripts/title_screen.gd" id="45_abqjc"]
 [ext_resource type="Texture2D" uid="uid://cfpidua2vn4g5" path="res://assets/sprites/splashscreen/SplashScreen_Title.png" id="45_blkrb"]
 [ext_resource type="Texture2D" uid="uid://bx6fvtit8lbd2" path="res://assets/sprites/splashscreen/SplashScreen_Oiso_1.png" id="46_abqjc"]
+[ext_resource type="Script" uid="uid://dill0mmxypq6a" path="res://scripts/mini_game_transition.gd" id="46_ruth0"]
+[ext_resource type="Texture2D" uid="uid://c3lpe61dlfy3e" path="res://assets/sprites/shadow-white.png" id="46_uit24"]
 [ext_resource type="Texture2D" uid="uid://bxjdqop446vcc" path="res://assets/sprites/splashscreen/SplashScreen_Sun.png" id="47_6iyjs"]
+[ext_resource type="Texture2D" uid="uid://cx5deffqgry3h" path="res://assets/sprites/children/Perso_griffin.PNG" id="47_ruth0"]
+[ext_resource type="Texture2D" uid="uid://c7fhl7m4qjj7c" path="res://assets/sprites/children/Perso_mc.png" id="48_rm4vd"]
+[ext_resource type="Texture2D" uid="uid://b1bhvuqhsi25i" path="res://assets/sprites/star.png" id="49_pjyto"]
+[ext_resource type="Texture2D" uid="uid://dh84s15ycbkfd" path="res://assets/sprites/versus.png" id="50_sm6fg"]
+[ext_resource type="Texture2D" uid="uid://djuu3njtep44a" path="res://assets/sprites/splashscreen/SplashScreen_2.png" id="61_rm4vd"]
 
 [sub_resource type="Animation" id="Animation_gngh3"]
 length = 0.001
@@ -167,6 +174,171 @@ font_size = 46
 font_color = Color(0.652344, 0.0382233, 0.0382233, 1)
 outline_color = Color(1, 1, 1, 0.27451)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b17eg"]
+shader = ExtResource("37_blkrb")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_size = 8.0
+shader_parameter/alpha_threshold = 0.0
+shader_parameter/outline_samples = 8
+shader_parameter/shade_color = Color(1, 1, 1, 0.5)
+
+[sub_resource type="Animation" id="Animation_uatky"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VSControl:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/VSControl/Star2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-6.28319]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Control/Opponent:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(137, -276)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Control2/Player:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-402, -59)]
+}
+
+[sub_resource type="Animation" id="Animation_ntx8l"]
+resource_name = "enter_minigame"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/VSControl:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5, 1.73333, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.46667, 2.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/VSControl/Star2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-6.28319, 6.28319]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Background:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Control/Opponent:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1228, -276), Vector2(137, -276)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Control2/Player:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(855, -59), Vector2(-402, -59)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqtf5"]
+_data = {
+&"RESET": SubResource("Animation_uatky"),
+&"enter_minigame": SubResource("Animation_ntx8l")
+}
+
 [sub_resource type="Animation" id="Animation_f6a44"]
 length = 0.001
 tracks/0/type = "value"
@@ -216,6 +388,42 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Birds:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("46_abqjc")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Birds:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-648, -283)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/BigCloud/Title:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_wnkbs"]
@@ -270,16 +478,106 @@ tracks/3/keys = {
 "values": [false, true]
 }
 
+[sub_resource type="Animation" id="Animation_ruth0"]
+resource_name = "loop"
+length = 20.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/BigCloud:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 7.91994, 11.9199, 16.0783, 20.0783),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 25), Vector2(0, 0), Vector2(0, 25), Vector2(0, 0), Vector2(0, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Hills:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Clouds:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4, 7.94846, 11.9485, 15.9642, 19.9642),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -6), Vector2(0, 0), Vector2(0, -6), Vector2(0, 0), Vector2(0, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/PlayButton:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Birds:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.466667, 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12.001, 12.4677, 12.9677, 13.4677, 13.9677, 14.4677, 14.9677, 15.4677, 15.9677, 16.4677, 16.9677, 17.4677, 17.9677, 18.4677, 18.9677, 19.4677, 19.9677, 20.4677, 20.9677, 21.4677, 21.9677, 22.4677, 22.9677, 23.4677, 23.9677),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("46_abqjc"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd"), ExtResource("46_abqjc"), ExtResource("61_rm4vd")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Control/Birds:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 20),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-648, 3), Vector2(1518, -1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Control/BigCloud/Title:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(4.12792, 4.23333, 4.33333, 4.43333, 4.53333, 10.0067, 10.1121, 10.2121, 10.3121, 10.4121, 16.0728, 16.1782, 16.2782, 16.3782, 16.4782),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0cbny"]
 _data = {
 &"RESET": SubResource("Animation_f6a44"),
-&"fade_in": SubResource("Animation_wnkbs")
+&"fade_in": SubResource("Animation_wnkbs"),
+&"loop": SubResource("Animation_ruth0")
 }
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("mini_games")]
 script = ExtResource("1_ig7tw")
 editor_size = Vector2(1152, 648)
-mini_games = [NodePath("MiniGames/CardBattle")]
+mini_games = [NodePath("MiniGames/CardThrowing"), NodePath("MiniGames/CardShuffle"), NodePath("MiniGames/CardBattle")]
 emoji_sad_texture = ExtResource("11_kq58d")
 emoji_ok_texture = ExtResource("4_seu75")
 emoji_happy_texture = ExtResource("3_kq58d")
@@ -292,7 +590,7 @@ script = ExtResource("7_uypp3")
 [node name="CanvasLayer" type="CanvasLayer" parent="Playground"]
 layer = -1
 
-[node name="TextureRect4" type="TextureRect" parent="Playground/CanvasLayer"]
+[node name="Sky" type="TextureRect" parent="Playground/CanvasLayer"]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -303,7 +601,7 @@ texture = ExtResource("7_come4")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="Playground/CanvasLayer"]
+[node name="SkyGradient" type="TextureRect" parent="Playground/CanvasLayer"]
 texture_filter = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -320,8 +618,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1.0
-offset_right = 3455.0
-offset_bottom = 1944.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -991,6 +1288,7 @@ stretch_mode = 5
 [node name="CardThrowing" type="CanvasLayer" parent="MiniGames"]
 visible = false
 script = ExtResource("13_2cqfq")
+background_texture = ExtResource("19_1u8w0")
 
 [node name="Container" type="Control" parent="MiniGames/CardThrowing"]
 layout_mode = 3
@@ -1120,6 +1418,7 @@ scale = Vector2(0.3, 0.3)
 visible = false
 script = ExtResource("20_d13ii")
 cards = [NodePath("Control/CardsContainer/CardControl"), NodePath("Control/CardsContainer/CardControl2"), NodePath("Control/CardsContainer/CardControl3")]
+background_texture = ExtResource("36_ok6jj")
 
 [node name="Control" type="Control" parent="MiniGames/CardShuffle"]
 layout_mode = 3
@@ -1230,6 +1529,7 @@ visible = false
 script = ExtResource("45_6iyjs")
 opponent_cards = [NodePath("Container/OpponentCards/OpponentCardsContainer/CardControl"), NodePath("Container/OpponentCards/OpponentCardsContainer/CardControl2"), NodePath("Container/OpponentCards/OpponentCardsContainer/CardControl3")]
 player_cards = [NodePath("Container/PlayerCards/PlayerCardsContainer/CardControl"), NodePath("Container/PlayerCards/PlayerCardsContainer/CardControl2"), NodePath("Container/PlayerCards/PlayerCardsContainer/CardControl3")]
+background_texture = ExtResource("36_ok6jj")
 
 [node name="Container" type="Control" parent="MiniGames/CardBattle"]
 layout_mode = 3
@@ -1367,8 +1667,310 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleScreen" type="CanvasLayer" parent="."]
+[node name="MiniGameTransition" type="CanvasLayer" parent="MiniGames"]
 visible = false
+script = ExtResource("46_ruth0")
+
+[node name="Background" type="TextureRect" parent="MiniGames/MiniGameTransition"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_1u8w0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Control" type="Panel" parent="MiniGames/MiniGameTransition"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MiniGames/MiniGameTransition/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Opponent" type="Control" parent="MiniGames/MiniGameTransition/Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 117.0
+offset_top = -296.0
+offset_right = 505.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MiniGames/MiniGameTransition/Control/Control/Opponent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shadow3" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control/Opponent/Control"]
+modulate = Color(0.466667, 0.458824, 0.396078, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = 108.0
+offset_right = 92.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="Shadow2" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control/Opponent/Control"]
+modulate = Color(0.5625, 0.556152, 0.505371, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = 122.0
+offset_right = 55.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="Shadow" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control/Opponent/Control"]
+modulate = Color(0.678431, 0.670588, 0.588235, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 141.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="Shadow4" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control/Opponent"]
+modulate = Color(0, 0, 0, 0.0745098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 103.0
+offset_top = 198.0
+offset_right = -124.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control/Opponent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_ruth0")
+stretch_mode = 5
+
+[node name="Control2" type="Control" parent="MiniGames/MiniGameTransition/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" type="Control" parent="MiniGames/MiniGameTransition/Control/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -422.0
+offset_top = -79.0
+offset_right = -34.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="MiniGames/MiniGameTransition/Control/Control2/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shadow3" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control2/Player/Control"]
+modulate = Color(0.466667, 0.458824, 0.396078, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -92.0
+offset_top = 108.0
+offset_right = 92.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="Shadow2" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control2/Player/Control"]
+modulate = Color(0.5625, 0.556152, 0.505371, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -55.0
+offset_top = 122.0
+offset_right = 55.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="Shadow" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control2/Player/Control"]
+modulate = Color(0.678431, 0.670588, 0.588235, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 141.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="Shadow4" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control2/Player"]
+modulate = Color(0, 0, 0, 0.0745098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 110.0
+offset_top = 198.0
+offset_right = -117.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_uit24")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/Control2/Player"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("48_rm4vd")
+stretch_mode = 5
+
+[node name="VSControl" type="Control" parent="MiniGames/MiniGameTransition/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Star2" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/VSControl"]
+modulate = Color(0.542969, 0.155378, 0.103928, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.5
+offset_top = -152.5
+offset_right = 152.5
+offset_bottom = 152.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -6.28319
+pivot_offset = Vector2(152, 152)
+texture = ExtResource("49_pjyto")
+expand_mode = 1
+
+[node name="Star" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/VSControl"]
+modulate = Color(0.882813, 0.310472, 0.234497, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -138.0
+offset_right = 202.0
+offset_bottom = 138.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.174533
+pivot_offset = Vector2(202, 138)
+texture = ExtResource("49_pjyto")
+expand_mode = 1
+
+[node name="VS" type="TextureRect" parent="MiniGames/MiniGameTransition/Control/VSControl"]
+material = SubResource("ShaderMaterial_b17eg")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("50_sm6fg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MiniGames/MiniGameTransition"]
+libraries = {
+&"": SubResource("AnimationLibrary_rqtf5")
+}
+
+[node name="TitleScreen" type="CanvasLayer" parent="."]
 script = ExtResource("45_abqjc")
 
 [node name="Control" type="Control" parent="TitleScreen"]
@@ -1390,17 +1992,31 @@ grow_vertical = 2
 texture = ExtResource("40_wnkbs")
 
 [node name="Clouds" type="TextureRect" parent="TitleScreen/Control"]
+modulate = Color(1, 1, 1, 0.784314)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -235.0
-offset_right = 3456.0
-offset_bottom = 1709.0
+offset_bottom = -235.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("42_0cbny")
+
+[node name="Birds" type="TextureRect" parent="TitleScreen/Control"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -648.0
+offset_top = -283.0
+offset_right = -648.0
+offset_bottom = -283.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("46_abqjc")
 
 [node name="Hills" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
@@ -1409,8 +2025,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 648.0
-offset_right = 3456.0
-offset_bottom = 2592.0
+offset_bottom = 648.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("41_f6a44")
@@ -1432,8 +2047,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -648.0
-offset_right = 3456.0
-offset_bottom = 1296.0
+offset_bottom = -648.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("43_hrvbo")
@@ -1446,17 +2060,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(580, 230)
 texture = ExtResource("45_blkrb")
-
-[node name="Birds" type="TextureRect" parent="TitleScreen/Control"]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("46_abqjc")
 
 [node name="Sun" type="TextureRect" parent="TitleScreen/Control"]
 texture_filter = 1
@@ -1483,3 +2088,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_0cbny")
 }
 autoplay = "fade_in"
+next/fade_in = &"loop"
